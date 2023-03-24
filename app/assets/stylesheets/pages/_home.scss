@@ -1,1 +1,28 @@
 // Specific CSS for your home-page
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.btn-boat{
+  background-color: #2078AD !important;
+  color: white !important;;
+  height: 38px;
+  width: 100%;
+}
+
+.btn-boat i {
+  color: white !important;
+  padding-top: 4px;
+}
+
+.categories img {
+  max-height: 100px;
+}
+
+.banner-2 {
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+}

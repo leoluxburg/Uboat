@@ -1,2 +1,196 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image:  linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/209978/pexels-photo-209978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); ">
+  <div class="container">
+    <div class="" style=" background-color: white; width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;">
+      <br>
+      <div class="container">
+        <div class="text-center">
+          <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ALQUILER DE EQUIPO MARINO</h1>
+          <p style="font-family: 'Raleway', sans-serif;">Encuentra todo lo que necesitas para tu proxima aventura en el mar.</p>
+        </div>
+        <div class="row">
+         <div class="col-md-1"></div>
+         <div class="col-md-8">
+          <div class="mb-3 select optional property_tipo"><select class="form-select select optional" name="property[tipo]" id="property_tipo" placeholder="Busca Naves, Personal, Servicios y Más.">
+            <option value="" disabled selected>Busca Naves, Personal, Servicios y Más.</option>
+            <option value="Venta">Venta</option>
+            <option value="Alquiler">Alquiler</option></select></div>
+          </div>
+          <div class="col-md-2"><%= link_to "Buscar", '/', class: 'btn btn-boat space' %></div>
+          <div class="col-md-1"></div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row text-center categories">
+    <div class="col-md-1"></div>
+    <div class="col-md-2"><%= image_tag "4.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">NAVES</h5></div>
+    <div class="col-md-2"><%= image_tag "6.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TRIPULACION</h5></div>
+    <div class="col-md-2"><%= image_tag "5.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">PESCA</h5></div>
+    <div class="col-md-2"><%= image_tag "7.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">SERVICIOS</h5></div>
+    <div class="col-md-2"><%= image_tag "8.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">BUCEO</h5></div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="text-center">
+    <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ULTIMOS PRODUCTOS</h1>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+
+      <div style="padding-bottom: 20px">
+        <div class="card-trip">
+          <img src="https://images.pexels.com/photos/6761423/pexels-photo-6761423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <div class="card-trip-infos">
+            <div>
+              <p>GRADEL & FIL 1040 </p>
+              <p><i class="fas fa-anchor" style="color: #2078AD;"></i> Naves</p>
+            </div>
+            <p class="card-trip-pricing"> $ 450.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div style="padding-bottom: 20px">
+        <div class="card-trip">
+          <img src="https://images.pexels.com/photos/209810/pexels-photo-209810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <div class="card-trip-infos">
+            <div>
+              <p>Cañas de pescar </p>
+              <p><i class="fas fa-fish" style="color: #2078AD;"></i> Pesca</p>
+            </div>
+            <p class="card-trip-pricing"> $ 450.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div style="padding-bottom: 20px">
+        <div class="card-trip">
+          <img src="https://images.pexels.com/photos/12811925/pexels-photo-12811925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <div class="card-trip-infos">
+            <div>
+              <p>Capitan Privado</p>
+              <p><i class="fas fa-users" style="color: #2078AD;"></i> Tripulacion</p>
+            </div>
+            <p class="card-trip-pricing"> $ 450.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div style="padding-bottom: 20px">
+        <div class="card-trip">
+          <img src="https://images.pexels.com/photos/15067131/pexels-photo-15067131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <div class="card-trip-infos">
+            <div>
+              <p>JetSki 35000  </p>
+              <p><i class="fas fa-anchor" style="color: #2078AD;"></i> Naves</p>
+            </div>
+            <p class="card-trip-pricing"> $ 450.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://content.r9cdn.net/rimg/dimg/7d/3e/c3e5ad61-city-33356-16c4e19af0e.jpg?crop=true&width=1366&height=768&xhint=1586&yhint=1227)";>
+  <div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: white; font-size: 60px;">Cobertura en Panamá</h1>
+      <p style="color: white;">Conoce los Puertos Nacionales, Marinas, Lagos, Rios donde podras encontrar productos de UBoat. <br> A largo de las 9 provincia podras encotrar proveedores que facilitaran tu viaje. </p>
+    </div>
+  </div>
+  <div class="row"> <div class="col-md-5"></div>  <div class="col-md-2"><%= link_to "Ver Ubicaciones", '/', class: 'btn btn-boat space' %></div>
+  <div class="col-md-5"></div></div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div style="">
+        <img src="https://www.marinemax.com/-/media/images/yachts/thumbnails/yacht-ownership-thumb.jpg" alt="" height="100%" width="100%">
+        <br>
+        <br>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="">
+        <div class="">
+          <h1 style="font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">¿Eres propietario de un bote?</h1>
+        </div>
+        <br>
+        <p style="">Contactanos y conviertete en un proveedor. Unete a una lista gratuita para que su barco esté disponible para alquilar a otras personas. Yates, veleros, semirrígidas, lanchas a motor, catamaranes: todos son bienvenidos en Uboat. Fleta a quien quieras, cuando quieras y al precio que quieras. Te permitimos monetizar tu bote y te ayudamos a conectar con clientes cuando quieras y al precio que quieras.</p>
+        <br>
+        <a class="btn btn-boat" href="/nosotros">Quiero convertime en proveedor</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div  style="background-color: black; color: white;" >
+  <div class="container ">
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-4 ">
+        <img src="/assets/footerlogo.png" alt="" height="150">
+        <br>
+        <br>
+      </div>
+      <br>
+      <div class="col-md-4 ">
+        <h4>Social Media</h4>
+        <br>
+        <p><i class="fab fa-instagram"></i> Instagram</p>
+        <p><i class="fab fa-youtube"></i> Youtube</p>
+        <br>
+      </div>
+
+      <div class="col-md-4">
+        <h4>Info. de Contacto</h4>
+        <br>
+        <p><i class="fas fa-envelope"></i> contact@uboat.com</p>
+        <p><i class="fas fa-phone"></i> +507 6288-3330</p>
+        <p><i class="fas fa-map-marker-alt"></i> Clayton, Cuidad del saber</p>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+</div>
+<div style="background-color: black;">
+  <div class="footer2">
+    <div class="container text-center " style="padding-top: 8px; padding-bottom: 8px;" >
+        <h6 style="color: white;">©2023 UBoat </h6>
+    </div>
+  </div>
+</div>
