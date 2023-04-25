@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Alabama",
+    "cities": ["Birmingham", "Montgomery", "Mobile"]
+  },
+  {
+    "name": "Alaska",
+    "cities": ["Anchorage", "Fairbanks", "Juneau"]
+  },
+  {
+    "name": "Arizona",
+    "cities": ["Phoenix", "Tucson", "Mesa"]
+  }
+]

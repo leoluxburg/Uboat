@@ -1,0 +1,71 @@
+<%= form_for(@product) do |f| %>
+<% if @product.errors.any? %>
+<div class="alert alert-danger">
+  <ul>
+    <% @product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div  data-controller="select" data-select-url-value="<%= subcategories_products_path %>" data-select-param-value="category">
+  <div class="mb-3">
+    <%= f.label :categoria, class: "form-label" %>
+    <%= f.select :categoria, @categories, { prompt: "Select a category" }, { class: "form-select", "data-action" => "change->select#change" } %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :subcategoria, class: "form-label" %>
+    <%= f.select :subcategoria,[], {}, { class: "form-select", data: { select_target: "select" } }%>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-8">
+  <%= f.label :titulo, class: "form-label" %>
+  <%= f.text_field :titulo, class: "form-control" %>
+</div>
+<div class="col-md-4">
+  <%= f.label :precio, class: "form-label" %>
+  <%= f.number_field :precio, class: "form-control" %>
+</div>
+</div>
+<br>
+<div class="mb-3">
+  <%= f.label :descripcion, class: "form-label" %>
+  <%= f.text_area :descripcion, class: "form-control" %>
+</div>
+<div  data-controller="select" data-select-url-value="<%= districts_products_path %>" data-select-param-value="province">
+  <div class="mb-3">
+    <%= f.label :provincia, class: "form-label" %>
+    <%= f.select :provincia, @provinces,  { prompt: "Select a province" },{ class: "form-select", "data-action" => "change->select#change" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :distrito, class: "form-label" %>
+    <%= f.select :distrito, [], {}, { class: "form-select", data: { select_target: "select" } } %>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+  <%= f.label :corregimiento, class: "form-label" %>
+  <%= f.text_field :corregimiento, class: "form-control" %>
+</div>
+
+<div class="col-md-4">
+  <%= f.label :sector, class: "form-label" %>
+  <%= f.text_field :sector, class: "form-control" %>
+</div>
+
+<div class="col-md-4">
+  <%= f.label :marina, class: "form-label" %>
+  <%= f.text_field :marina, class: "form-control" %>
+</div>
+
+</div>
+
+
+<hr>
+
+
+<%= f.submit "Submit", class: "btn btn-boat" %>
+<% end %>

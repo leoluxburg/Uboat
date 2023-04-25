@@ -1,0 +1,25 @@
+<% if current_user.profile.id == @profile.id%>
+<br>
+<br>
+<br>
+<div class="container" style="">
+  <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <br>
+    <h2 style="font-family: 'IM Fell DW Pica SC', serif;"><i class="fas fa-user" style="color: #2078AD !important;"></i> Registro de Perfil</h2>
+    <hr>
+    <%= render "form", profile: @profile %>
+
+    <br>
+
+    <div>
+      <%= link_to "Show this profile", @profile %> |
+      <%= link_to "Back to profiles", profiles_path %>
+    </div>
+    <% end %>
+    <br>
+    <hr>
+  </div>
+</div>
+<br>
+<br>
+<br>

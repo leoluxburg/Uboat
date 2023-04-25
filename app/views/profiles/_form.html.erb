@@ -1,0 +1,41 @@
+
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-md-8">
+         <%= f.input :nombre_completo %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :telefono %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+         <%= f.input :nacionalidad, :collection => @countries %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :fecha_de_nacimiento, start_year: Time.now.year - 100,
+  end_year: Time.now.year - 18,
+  order: %i(day month year) %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :experiencia, label: 'Experiencia en Navegacion' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :nombre_emergencia %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :telefono_emergencia %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-boat' %>
+  </div>
+<% end %>

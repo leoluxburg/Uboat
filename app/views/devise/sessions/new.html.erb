@@ -3,71 +3,27 @@
     <br>
     <h2><i class="fas fa-user" style="color: #2078AD;"></i> Inicio de Sesion</h2>
     <hr>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-<hr>
-  <div class="form-actions">
-    <%= f.button :submit, "Log in", class: 'btn btn-boat' %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</div>
-</div>
-<br>
-<br>
-<br>
-<br>
-  <br>
-  <br>
-  <br>
-<div  style="background-color: black; color: white;" >
-  <div class="container ">
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-md-4 ">
-        <img src="/assets/footerlogo.png" alt="" height="120">
-        <br>
-        <br>
-      </div>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+      <hr>
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: 'btn btn-boat' %>
+        </div>
+      <% end %>
       <br>
-      <div class="col-md-4 ">
-        <h4>Social Media</h4>
-        <br>
-        <p><i class="fab fa-instagram"></i> Instagram</p>
-        <p><i class="fab fa-youtube"></i> Youtube</p>
-        <br>
-      </div>
-
-      <div class="col-md-4">
-        <h4>Info. de Contacto</h4>
-        <br>
-        <p><i class="fas fa-envelope"></i> contact@uboat.com</p>
-        <p><i class="fas fa-phone"></i> +507 6288-3330</p>
-        <p><i class="fas fa-map-marker-alt"></i> Clayton, Cuidad del saber</p>
-      </div>
-    </div>
-
-  </div>
-  <br>
-  <br>
-  <br>
-</div>
-<div style="background-color: black;">
-  <div class="footer2">
-    <div class="container text-center " style="padding-top: 8px; padding-bottom: 8px;" >
-        <h6 style="color: white;">©2023 UBoat </h6>
-    </div>
+      <%= render "devise/shared/links" %>
   </div>
 </div>
+<br>
+<br>
+<br>
+
