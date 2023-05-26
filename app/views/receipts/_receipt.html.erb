@@ -1,0 +1,103 @@
+<div id="<%= dom_id receipt %>">
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        <strong>First name:</strong>
+        <%= receipt.first_name %>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <p>
+        <strong>Last name:</strong>
+        <%= receipt.last_name %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        <strong>Email:</strong>
+        <%= receipt.email %>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <p>
+        <strong>Phone:</strong>
+        <%= receipt.phone %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+     <p>
+      <strong>Shipping country:</strong>
+      <%= receipt.shipping_country %>
+    </p>
+  </div>
+  <div class="col-md-4">
+   <p>
+    <strong>Shipping city:</strong>
+    <%= receipt.shipping_city %>
+  </p>
+</div>
+<div class="col-md-4">
+
+ <p>
+  <strong>Shipping postal code:</strong>
+  <%= receipt.shipping_postal_code %>
+</p>
+</div>
+</div>
+
+<p>
+  <strong>Shipping address line 1:</strong>
+  <%= receipt.shipping_address_line_1 %>
+</p>
+
+<p>
+  <strong>Shipping address line 2:</strong>
+  <%= receipt.shipping_address_line_2 %>
+</p>
+
+
+<p>
+  <strong>Order notes:</strong>
+  <%= receipt.order_notes %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= receipt.status %>
+</p>
+
+
+
+</div>
+<p>Items</p>
+<% @receipt.receipt_items.each_with_index do |item, index| %>
+<% if item.product %>
+<% index += 1 %>
+<div class="basket-item">
+  <div>
+    <h3><%= index %> - <%= item.product.titulo %> </h3>
+    <h6>Owner: <%= item.product%></h6>
+  </div>
+  <div>
+    <h2><i class="fas fa-dollar-sign" style="color: #2078AD;"></i> <%= '%.2f' % item.total %> </h2>
+  </div>
+</div>
+<% else %>
+<h2>Producto Eliminado</h2>
+<% end %>
+<% end %>
+<hr>
+<div class="basket-item">
+  <div>
+    <h4> Subtotal: </h4>
+    <h3> Total: <%= '%.2f' %  @receipt.price  %></h3>
+  </div>
+</div>

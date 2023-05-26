@@ -1,4 +1,7 @@
 // Specific CSS for your home-page
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'IM Fell DW Pica SC', serif;
+}
 .banner {
   background-size: cover;
   background-position: center;
@@ -42,3 +45,47 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.basket-item{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.avatar-profile {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 5px solid #2078AD;
+}
+
+.avatar-profile-2 {
+  vertical-align: middle;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 5px solid #2078AD;
+}
+
+.card-categoryv2 {
+  background-size: cover;
+  background-position: center;
+
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-categoryv2 img {
+
+  height: auto;
+  width: 100%;
+  max-width: 150px;
+}

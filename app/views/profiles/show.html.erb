@@ -10,7 +10,10 @@
       <hr>
       <div class="text-center">
        <% if  @profile %>
-       <%= image_tag "user-boat.png", height: "200" %>
+       <% if @profile.photo.attached? %>
+        <%= cl_image_tag @profile.photo.key, height: 500, width: 500, crop: :fill, class: "avatar-profile" %>
+        <% end %>
+
        <br>
        <p><i class="fas fa-user"></i> Nombre de Usuario: <%= @profile.nombre_completo %></p>
        <p><i class="fas fa-flag"></i> Nacionalidad : <%= @profile.nacionalidad %></p>

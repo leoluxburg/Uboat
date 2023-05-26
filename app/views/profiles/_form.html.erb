@@ -13,6 +13,9 @@
       </div>
     </div>
     <div class="row">
+      <%= f.input :photo, as: :file %>
+    </div>
+    <div class="row">
       <div class="col-md-4">
          <%= f.input :nacionalidad, :collection => @countries %>
       </div>

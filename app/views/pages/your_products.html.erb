@@ -1,0 +1,59 @@
+<br>
+<br>
+<br>
+<br>
+<div>
+  <div class="container">
+    <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <br>
+      <h2 style="font-family: 'IM Fell DW Pica SC', serif;"><i class="fas fa-user"  style="color: #2078AD;"></i> TUS PRODUCTOS</h2>
+      <hr>
+      <div class="text-center">
+       <br>
+       <br>
+         <div class="row">
+        <% if current_user.products %>
+        <% current_user.products.each do |product| %>
+        <div class="col-md-3">
+          <%= link_to product_path(product) do %>
+          <div style="padding-bottom: 20px">
+            <div class="card-trip">
+
+              <img src="<%= cl_image_path product.photos[0].key, height: 300, crop: :fill %>" />
+              <div class="card-trip-infos">
+                <div>
+                  <p><%= product.titulo %> </p>
+                  <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
+                </div>
+                <p class="card-trip-pricing"> $<%= '%.2f' % product.precio %></p>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+
+      </div>
+      <br>
+       <% if  current_user.vendedor == true %>
+        <a class="btn btn-boat" href="/products/new"><i class="fas fa-store"></i> Registrar Producto</a>
+       <% end %>
+       <br>
+       <br>
+       <br>
+       <hr>
+       <br>
+       <br>
+       <% else %>
+       <%= image_tag "user-boat.png", height: "200" %>
+       <br>
+       <hr>
+       <br>
+       <br>
+     </div>
+     <%end%>
+   </div>
+ </div>
+</div>
+<br>
+<br>

@@ -51,6 +51,10 @@ gem "sassc-rails"
 gem "devise"
 
 gem 'activeadmin'
+gem "dotenv-rails", groups: [:development, :test]
+gem "cloudinary"
+
+#gem 'jquery-rails'
 
 # Plus integrations with:
 
@@ -84,3 +88,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+

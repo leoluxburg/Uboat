@@ -27,14 +27,19 @@
           <%= link_to "Contacto", "/contact_us", class: "nav-link" %>
         </li>
         <% if user_signed_in? %>
-         <li class="nav-item">
-        <a href="/users/sign_in" class="nav-link text-uppercase " style="padding-right: 15px;"> <h4 style="color: #2078AD;"> <i class="fas fa-shopping-basket"></i> </h4></a>
-      </li>
+
+          <% if current_order%>
+          <div id="basket">
+            <%= render 'baskets/basket' %>
+          </div>
+          <% end %>
       <li class="nav-item dropdown">
         <a href="/users/sign_in" class="nav-link text-uppercase" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"> <h4 style="color: #2078AD;"><i class="fas fa-user"></i></h4></a>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Perfil", "/profile", class: "dropdown-item" %>
-          <%= link_to "Facturas", "/", class: "dropdown-item" %>
+          <%= link_to "Reservas", "/receipts", class: "dropdown-item" %>
+          <%= link_to "Productos", "/your_products", class: "dropdown-item" %>
+          <%= link_to "Clientes", "/your_clients", class: "dropdown-item" %>
           <%= button_to "Salir", destroy_user_session_path, method: :delete,  class: "dropdown-item"  %>
         </div>
       </li>

@@ -1,0 +1,2 @@
+json.extract! receipt, :id, :first_name, :last_name, :email, :phone, :shipping_address_line_1, :shipping_address_line_2, :shipping_city, :shipping_state, :shipping_postal_code, :shipping_country, :credit_card_number, :cardholder_name, :expiration_month, :expiration_year, :cvv_code, :product_name, :quantity, :price, :subtotal, :shipping_method, :taxes, :total, :gift_message, :coupon_code, :order_notes, :status, :order_id, :user_id, :created_at, :updated_at
+json.url receipt_url(receipt, format: :json)

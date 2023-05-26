@@ -1,16 +1,14 @@
 <%= link_to product_path(product) do %>
 <div style="padding-bottom: 20px">
-        <div class="card-trip">
-          <img src="https://images.pexels.com/photos/6761423/pexels-photo-6761423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div class="card-trip-infos">
-            <div>
-              <p><%= product.titulo %> </p>
-              <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
-            </div>
-            <p class="card-trip-pricing"> $ <%= '%.2f' % product.precio %></p>
-          </div>
-        </div>
+  <div class="card-trip">
+    <img src="<%= cl_image_path product.photos[0].key, height: 300, crop: :fill %>" />
+    <div class="card-trip-infos">
+      <div>
+        <p><%= product.titulo %> </p>
+        <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
       </div>
-
-</a>
+      <p class="card-trip-pricing"> $ <%= '%.2f' % product.precio %></p>
+    </div>
+  </div>
+</div>
 <% end %>

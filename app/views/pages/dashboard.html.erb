@@ -8,10 +8,15 @@
       <br>
       <h2 style="font-family: 'IM Fell DW Pica SC', serif"><i class="fas fa-user"  style="color: #2078AD;"></i> PERFIL DE USUARIO</h2>
       <hr>
+      <br>
       <div class="text-center">
        <% if  @user.profile %>
-       <%= image_tag "user-boat.png", height: "200" %>
 
+       <% if @user.profile.photo.attached? %>
+        <%= cl_image_tag @user.profile.photo.key, height: 500, width: 500, crop: :fill, class: "avatar-profile" %>
+        <% end %>
+
+      <br>
        <br>
        <p><i class="fas fa-user"></i> Nombre de Usuario: <%= @user.profile.nombre_completo %></p>
        <p><i class="fas fa-flag"></i> Nacionalidad : <%= @user.profile.nacionalidad %></p>
@@ -20,47 +25,38 @@
        <i class="fas fa-pencil"></i> <%= link_to "Editar", edit_profile_path(@user.profile)%>
        <% end %>
        <br>
-       <br>
-       <% if  current_user.vendedor == true %>
-        <a class="btn btn-boat" href="/products/new"><i class="fas fa-store"></i> Registrar Producto</a>
-       <% end %>
-       <br>
-       <br>
-
          <div class="row">
-        <% if current_user.products %>
-        <% current_user.products.each do |product| %>
-        <div class="col-md-3">
-          <%= link_to product_path(product) do %>
-          <div style="padding-bottom: 20px">
-            <div class="card-trip">
-              <img src="https://images.pexels.com/photos/6761423/pexels-photo-6761423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-              <div class="card-trip-infos">
-                <div>
-                  <p><%= product.titulo %> </p>
-                  <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
+             <div class="col-md-4">
+              <a href="/your_products">
+                <div class="card-categoryv2" style="background-color: #2078AD;">
+                  <div style="">
+                    <%= image_tag("9.png")%>
+                  </div>
                 </div>
-                <p class="card-trip-pricing"> $<%= '%.2f' % product.precio %></p>
-              </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/receipts">
+                <div class="card-categoryv2" style="background-color: #2078AD;">
+                  <div style="">
+                    <%= image_tag("10.png")%>
+                  </div>
+                </div>
+              </a>
+
+            </div>
+            <div class="col-md-4">
             </div>
           </div>
-          <% end %>
-        </div>
-        <% end %>
-        <% end %>
-      </div>
+       <br>
+
        <hr>
        <br>
        <br>
        <% else %>
        <%= image_tag "user-boat.png", height: "200" %>
        <br>
-       <a class="btn btn-boat" href="/profiles/new"><i class="fas fa-user"></i> Registrar Perfil</a>
-
        <br>
-
-       <br>
-
        <hr>
        <br>
        <br>

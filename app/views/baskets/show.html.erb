@@ -1,0 +1,51 @@
+<br>
+<br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="container" style="padding-top: 30px;">
+      <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2><i class="fas fa-shopping-basket" style="color: #2078AD;"></i> Your Cart</h2>
+        <hr>
+        <p>Items</p>
+        <% @order_items.each_with_index do |item, index| %>
+        <% index += 1 %>
+        <div class="basket-item">
+        <div>
+        <h3><%= index %> - <%= item.product.titulo %> </h3>
+        <h6><i class="fas fa-calendar"></i> De:  <%= item.end_date.strftime("%a, %d %b %Y")%> | Hasta: <%= item.start_date.strftime("%a, %d %b %Y")%>  </h6>
+        <%= form_for item, remote: true do |f| %>
+          <%= link_to "Eliminar", order_item_path(item),data: { "turbo-method": :delete }, remote: true%>
+        <% end %>
+        </div>
+        <div>
+          <h2><i class="fas fa-dollar-sign" style="color: #2078AD;"></i> <%= '%.2f' % item.total %> </h2>
+        </div>
+        </div>
+        <% end %>
+        <br>
+        <hr>
+        <div class="basket-item">
+        <div>
+        <h4> Subtotal: <%= '%.2f' % current_order.subtotal %></h4>
+        <h3> Total: <%= '%.2f' % current_order.subtotal %></h3>
+      </div>
+      <div>
+        <% if current_order.order_items.size >= 1 %>
+          <a class="btn btn-boat" href="/receipts/new"><i class="fas fa-cash-register"></i> Pagar </a>
+        <% else %>
+        <a class="btn btn-boat" href="/"><i class="fas fa-cash-register"></i> Pagar </a>
+        <% end %>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
