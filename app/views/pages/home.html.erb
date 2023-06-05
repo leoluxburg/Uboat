@@ -12,16 +12,16 @@
          <div class="col-md-1"></div>
          <div class="col-md-8">
           <div class="mb-3 select optional property_tipo"><select class="form-select select optional" name="property[tipo]" id="property_tipo" placeholder="Busca Naves, Personal, Servicios y Más.">
-            <option value="" disabled selected>Busca Naves, Personal, Servicios y Más.</option>
+            <option value="" disabled selected>Busca Naves, Tours, Servicios y Más.</option>
             <option value="Venta">Naves</option>
-            <option value="Alquiler">Tripulacion</option>
-            <option value="Alquiler">Pesca</option>
             <option value="Alquiler">Servicios</option>
-            <option value="Alquiler">Buceo</option>
+            <option value="Alquiler">Tours</option>
+            <option value="Alquiler">Tablas</option>
+            <option value="Alquiler">Accesorios</option>
           </select></div>
 
           </div>
-          <div class="col-md-2"><%= link_to "Buscar", '/', class: 'btn btn-boat space' %></div>
+          <div class="col-md-2"><%= link_to "Buscar", '/products', class: 'btn btn-boat space' %></div>
           <div class="col-md-1"></div>
         </div>
         <br>
@@ -36,10 +36,10 @@
   <div class="row text-center categories">
     <div class="col-md-1"></div>
     <div class="col-md-2"><%= image_tag "4.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">NAVES</h5></div>
-    <div class="col-md-2"><%= image_tag "6.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TRIPULACION</h5></div>
-    <div class="col-md-2"><%= image_tag "5.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">PESCA</h5></div>
+    <div class="col-md-2"><%= image_tag "9.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TABLAS</h5></div>
+    <div class="col-md-2"><%= image_tag "5.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TOURS</h5></div>
     <div class="col-md-2"><%= image_tag "7.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">SERVICIOS</h5></div>
-    <div class="col-md-2"><%= image_tag "8.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">BUCEO</h5></div>
+    <div class="col-md-2"><%= image_tag "8.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ACCESORIOS</h5></div>
     <div class="col-md-1"></div>
   </div>
 </div>
@@ -54,66 +54,11 @@
   <br>
   <br>
   <div class="row">
-    <div class="col-md-3">
-
-      <div style="padding-bottom: 20px">
-        <div class="card-trip">
-          <img src="https://images.pexels.com/photos/6761423/pexels-photo-6761423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div class="card-trip-infos">
-            <div>
-              <p>GRADEL & FIL 1040 </p>
-              <p><i class="fas fa-anchor" style="color: #2078AD;"></i> Naves</p>
-            </div>
-            <p class="card-trip-pricing"> $ 450.00</p>
-          </div>
-        </div>
-      </div>
+   <% @products.each do |product| %>
+   <div class="col-md-3">
+      <%= render product %>
     </div>
-    <div class="col-md-3">
-
-      <div style="padding-bottom: 20px">
-        <div class="card-trip">
-          <img src="https://images.pexels.com/photos/209810/pexels-photo-209810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div class="card-trip-infos">
-            <div>
-              <p>Cañas de pescar </p>
-              <p><i class="fas fa-fish" style="color: #2078AD;"></i> Pesca</p>
-            </div>
-            <p class="card-trip-pricing"> $ 450.00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-
-      <div style="padding-bottom: 20px">
-        <div class="card-trip">
-          <img src="https://images.pexels.com/photos/12811925/pexels-photo-12811925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div class="card-trip-infos">
-            <div>
-              <p>Capitan Privado</p>
-              <p><i class="fas fa-users" style="color: #2078AD;"></i> Tripulacion</p>
-            </div>
-            <p class="card-trip-pricing"> $ 450.00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-
-      <div style="padding-bottom: 20px">
-        <div class="card-trip">
-          <img src="https://images.pexels.com/photos/15067131/pexels-photo-15067131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div class="card-trip-infos">
-            <div>
-              <p>JetSki 35000  </p>
-              <p><i class="fas fa-anchor" style="color: #2078AD;"></i> Naves</p>
-            </div>
-            <p class="card-trip-pricing"> $ 450.00</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <% end %>
   </div>
 </div>
 <br>
@@ -127,7 +72,7 @@
       <p style="color: white;">Conoce los Puertos Nacionales, Marinas, Lagos, Rios donde podras encontrar productos de UBoat. <br> A largo de las 9 provincia podras encotrar proveedores que facilitaran tu viaje. </p>
     </div>
   </div>
-  <div class="row"> <div class="col-md-5"></div>  <div class="col-md-2"><%= link_to "Ver Ubicaciones", '/', class: 'btn btn-boat space' %></div>
+  <div class="row"> <div class="col-md-5"></div>  <div class="col-md-2"><%= link_to "Ver Ubicaciones", '/locations', class: 'btn btn-boat space' %></div>
   <div class="col-md-5"></div></div>
 </div>
 </div>
@@ -151,7 +96,7 @@
         <br>
         <p style="">Contactanos y conviertete en un proveedor. Unete a una lista gratuita para que su barco esté disponible para alquilar a otras personas. Yates, veleros, semirrígidas, lanchas a motor, catamaranes: todos son bienvenidos en Uboat. Fleta a quien quieras, cuando quieras y al precio que quieras. Te permitimos monetizar tu bote y te ayudamos a conectar con clientes cuando quieras y al precio que quieras.</p>
         <br>
-        <a class="btn btn-boat" href="/nosotros">Quiero convertime en proveedor</a>
+        <a class="btn btn-boat" href="/contact_us">Quiero convertime en proveedor</a>
         <br>
       </div>
     </div>

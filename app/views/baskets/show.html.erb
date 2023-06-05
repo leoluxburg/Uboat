@@ -13,7 +13,7 @@
         <div class="basket-item">
         <div>
         <h3><%= index %> - <%= item.product.titulo %> </h3>
-        <h6><i class="fas fa-calendar"></i> De:  <%= item.end_date.strftime("%a, %d %b %Y")%> | Hasta: <%= item.start_date.strftime("%a, %d %b %Y")%>  </h6>
+        <h6><i class="fas fa-calendar"></i> Desde:  <%= item.start_date.strftime("%a, %d %b %Y")%> | Hasta: <%= item.end_date.strftime("%a, %d %b %Y")%>  </h6>
         <%= form_for item, remote: true do |f| %>
           <%= link_to "Eliminar", order_item_path(item),data: { "turbo-method": :delete }, remote: true%>
         <% end %>

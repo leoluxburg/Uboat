@@ -6,22 +6,22 @@
           <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD; font-size: 50px"> Contactanos</h1>
           <br>
           <p><i class="fas fa-phone" style="color: #2078AD;"></i> +65 62230037 <br>
-              <br>
+            <br>
             <i class="fas fa-envelope" style="color: #2078AD;"></i> contact@theartling.com <br>
-              <br>
+            <br>
             <i class="fas fa-map-marker-alt" style="color: #2078AD;"></i> Singapore <br>
 
             91B Tanjong Pagar Road <br>
             Singapore 088512 <br>
 
             Office Hours: Mon-Fri 1000 - 1700 <br>
-<br>
+            <br>
             <i class="fas fa-map-marker-alt" style="color: #2078AD;"></i>  Shanghai <br>
 
             1F, Building 31, No. 322 <br>
             Jiaozhou Road, Shanghai <br>
 
-            By Appointment Only</p>
+          By Appointment Only</p>
           <br>
           <br>
         </div>
@@ -35,37 +35,37 @@
     <br>
   </div>
   <div class="container">
-         <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-         <div class="text-center">
-          <h1 style="font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">Dejanos un mensaje</h1>
+   <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+     <div class="text-center">
+      <h1 style="font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">Dejanos un mensaje</h1>
 
+    </div>
+
+    <form class="simple_form new_client" id="new_client" novalidate="novalidate" action="/clients" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vZMxwigajIme5AkJppWtNmWKUbkiphzExdefpsaN3zRWBXDqgvTlRodqyPAa50+xcC59o9FL4d3gdut/QQQh+w==">
+
+
+
+      <div class="form-inputs">
+        <div class="mb-3 string required client_name"><label class="form-label string required" for="client_name">Nombre Completo <abbr title="required">*</abbr></label><input class="form-control string required" type="text" name="client[name]" id="client_name"></div>
+        <div class="mb-3 email required client_email"><label class="form-label email required" for="client_email">Correo Electronico <abbr title="required">*</abbr></label><input class="form-control string email required" type="email" name="client[email]" id="client_email"></div>
+        <div class="mb-3 tel optional client_phone"><label class="form-label tel optional" for="client_phone">Numero de Telefono</label><input class="form-control string tel optional" type="tel" name="client[phone]" id="client_phone"></div>
+        <div class="mb-3 select required client_service"><label class="form-label select required" for="client_service">Servicio <abbr title="required">*</abbr></label><select class="form-select select required" name="client[service]" id="client_service"><option value=""></option>
+          <option value="Consultoria">Consultoria</option>
+          <option value="Desarrollo de software">Volverme Proveedor</option>
+          <option value="Clases de Programacion">Facturas</option>
+          <option value="Otro">Otro</option></select></div>
+          <div class="mb-3 text optional client_message"><label class="form-label text optional" for="client_message">Mensaje</label><textarea class="form-control text optional" name="client[message]" id="client_message"></textarea></div>
         </div>
+        <div class="text-center">
+          <div class="form-actions">
+            <button name="button" type="submit" class="btn btn-boat">
+              <i class="fas fa-paper-plane"></i> Enviar Mensaje
+            </button>    </div>
+          </div>
 
-<form class="simple_form new_client" id="new_client" novalidate="novalidate" action="/clients" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vZMxwigajIme5AkJppWtNmWKUbkiphzExdefpsaN3zRWBXDqgvTlRodqyPAa50+xcC59o9FL4d3gdut/QQQh+w==">
-
-
-
-  <div class="form-inputs">
-    <div class="mb-3 string required client_name"><label class="form-label string required" for="client_name">Nombre Completo <abbr title="required">*</abbr></label><input class="form-control string required" type="text" name="client[name]" id="client_name"></div>
-    <div class="mb-3 email required client_email"><label class="form-label email required" for="client_email">Correo Electronico <abbr title="required">*</abbr></label><input class="form-control string email required" type="email" name="client[email]" id="client_email"></div>
-    <div class="mb-3 tel optional client_phone"><label class="form-label tel optional" for="client_phone">Numero de Telefono</label><input class="form-control string tel optional" type="tel" name="client[phone]" id="client_phone"></div>
-    <div class="mb-3 select required client_service"><label class="form-label select required" for="client_service">Servicio <abbr title="required">*</abbr></label><select class="form-select select required" name="client[service]" id="client_service"><option value=""></option>
-<option value="Consultoria">Consultoria</option>
-<option value="Desarrollo de software">Volverme Proveedor</option>
-<option value="Clases de Programacion">Facturas</option>
-<option value="Otro">Otro</option></select></div>
-    <div class="mb-3 text optional client_message"><label class="form-label text optional" for="client_message">Mensaje</label><textarea class="form-control text optional" name="client[message]" id="client_message"></textarea></div>
-  </div>
-  <div class="text-center">
-    <div class="form-actions">
-      <button name="button" type="submit" class="btn btn-boat">
-        <i class="fas fa-paper-plane"></i> Enviar Mensaje
-</button>    </div>
-  </div>
-
-</form>
+        </form>
       </div>
     </div>
-</div>
-<br>
-<br>
+  </div>
+  <br>
+  <br>

@@ -21,24 +21,13 @@
       </div>
       <div class="col-md-4">
         <%= f.input :fecha_de_nacimiento, start_year: Time.now.year - 100,
-  end_year: Time.now.year - 18,
+  end_year: Time.now.year,
   order: %i(day month year) %>
-      </div>
-      <div class="col-md-4">
-        <%= f.input :experiencia, label: 'Experiencia en Navegacion' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :nombre_emergencia %>
-      </div>
-      <div class="col-md-6">
-        <%= f.input :telefono_emergencia %>
       </div>
     </div>
   </div>
-
+  <br>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-boat' %>
+    <%= f.button :submit, 'Guardar Perfil', class: 'btn btn-boat' %>
   </div>
 <% end %>

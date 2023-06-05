@@ -1,0 +1,100 @@
+<div class="banner" style="background-image:  linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/209978/pexels-photo-209978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); ">
+  <div class="container">
+    <div class="" style=" background-color: white; width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;">
+      <br>
+      <div class="container">
+        <div class="text-center">
+          <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ALQUILER DE EQUIPO MARINO</h1>
+          <p style="font-family: 'Raleway', sans-serif;">Encuentra todo lo que necesitas para tu proxima aventura en el mar.</p>
+        </div>
+        <br>
+
+        <%= simple_form_for(@search)  do |f| %>
+        <div class="row">
+         <div class="col-md-1"></div>
+         <div class="col-md-8">
+          <%= f.input :category, collection: ['Naves', 'Servicios', 'Tours', 'Accesorios', 'Tablas'], label: false, default: 1%>
+
+          </div>
+          <div class="col-md-2"><%=f.button :submit, 'Buscar', class: 'btn btn-boat space' %></div>
+          <div class="col-md-1"></div>
+        </div>
+        <% end %>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row text-center categories">
+    <div class="col-md-1"></div>
+    <div class="col-md-2"><%= image_tag "4.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">NAVES</h5></div>
+    <div class="col-md-2"><%= image_tag "9.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TABLAS</h5></div>
+    <div class="col-md-2"><%= image_tag "5.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">TOURS</h5></div>
+    <div class="col-md-2"><%= image_tag "7.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">SERVICIOS</h5></div>
+    <div class="col-md-2"><%= image_tag "8.png" %><h5 style=" font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ACCESORIOS</h5></div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="text-center">
+    <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ULTIMOS PRODUCTOS</h1>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+   <% @products.each do |product| %>
+   <div class="col-md-3">
+      <%= render product %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://content.r9cdn.net/rimg/dimg/7d/3e/c3e5ad61-city-33356-16c4e19af0e.jpg?crop=true&width=1366&height=768&xhint=1586&yhint=1227)";>
+  <div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: white; font-size: 60px;">Cobertura en Panamá</h1>
+      <p style="color: white;">Conoce los Puertos Nacionales, Marinas, Lagos, Rios donde podras encontrar productos de UBoat. <br> A largo de las 9 provincia podras encotrar proveedores que facilitaran tu viaje. </p>
+    </div>
+  </div>
+  <div class="row"> <div class="col-md-5"></div>  <div class="col-md-2"><%= link_to "Ver Ubicaciones", '/locations', class: 'btn btn-boat space' %></div>
+  <div class="col-md-5"></div></div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div style="">
+        <img src="https://www.marinemax.com/-/media/images/yachts/thumbnails/yacht-ownership-thumb.jpg" alt="" height="100%" width="100%">
+        <br>
+        <br>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="">
+        <div class="">
+          <h1 style="font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">¿Eres propietario de un bote?</h1>
+        </div>
+        <br>
+        <p style="">Contactanos y conviertete en un proveedor. Unete a una lista gratuita para que su barco esté disponible para alquilar a otras personas. Yates, veleros, semirrígidas, lanchas a motor, catamaranes: todos son bienvenidos en Uboat. Fleta a quien quieras, cuando quieras y al precio que quieras. Te permitimos monetizar tu bote y te ayudamos a conectar con clientes cuando quieras y al precio que quieras.</p>
+        <br>
+        <a class="btn btn-boat" href="/contact_us">Quiero convertime en proveedor</a>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,12 +8,16 @@
       <br>
       <h2 style="font-family: 'IM Fell DW Pica SC', serif"><i class="fas fa-user"  style="color: #2078AD;"></i> PERFIL DE USUARIO</h2>
       <hr>
+      <br>
       <div class="text-center">
        <% if  @profile %>
        <% if @profile.photo.attached? %>
         <%= cl_image_tag @profile.photo.key, height: 500, width: 500, crop: :fill, class: "avatar-profile" %>
+        <% else %>
+        <%= image_tag("user-boat.png", height: 200)%>
         <% end %>
 
+       <br>
        <br>
        <p><i class="fas fa-user"></i> Nombre de Usuario: <%= @profile.nombre_completo %></p>
        <p><i class="fas fa-flag"></i> Nacionalidad : <%= @profile.nacionalidad %></p>
@@ -22,39 +26,12 @@
        <i class="fas fa-pencil"></i> <%= link_to "Editar", edit_profile_path(@profile)%>
        <% end %>
        <br>
-       <br>
-       <% if  current_user.vendedor == true %>
-       <a class="btn btn-boat" href="/profiles/new"><i class="fas fa-store"></i> Registrar Producto</a>
-       <% end %>
-       <br>
-       <br>
-       <div class="row">
-        <% if @profile.user.products %>
-        <% @profile.user.products.each do |product| %>
-        <div class="col-md-3">
-          <%= link_to product_path(product) do %>
-          <div style="padding-bottom: 20px">
-            <div class="card-trip">
-              <img src="https://images.pexels.com/photos/6761423/pexels-photo-6761423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-              <div class="card-trip-infos">
-                <div>
-                  <p><%= product.titulo %> </p>
-                  <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
-                </div>
-                <p class="card-trip-pricing"> <%= '%.2f' % product.precio %></p>
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </div>
-        <% end %>
-        <% end %>
-      </div>
+
       <hr>
       <br>
       <br>
       <% else %>
-      <img src="https://i.ibb.co/Psk1BPj/EEC76D.png" height="240">
+      <%= image_tag("user-boat.png")%>
       <br>
       <a class="btn btn-boat" href="/profiles/new"><i class="fas fa-user"></i> Registrar Perfil</a>
 

@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-    skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.search(params[:search])
+    @search = Search.new
   end
 
   # GET /products/1 or /products/1.json
@@ -32,7 +33,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    if current_user == @product.user
+    if current_user.vendedor
       @product = Product.new(product_params)
       @product.user = current_user
       respond_to do |format|

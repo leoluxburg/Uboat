@@ -3,9 +3,9 @@
 <div class="container">
   <div class="div" style="padding-top: 100px;">
     <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-      <h2><i class="fas fa-receipt" style="color: #2078AD;"></i> Ordenes</h2>
-      <hr>
       <% if current_user.admin  %>
+      <h2><i class="fas fa-receipt" style="color: #2078AD;"></i>Reservas</h2>
+      <hr>
       <div class="table-responsive">
        <div class="table-responsive">
         <table class="table">
@@ -38,42 +38,46 @@
       <hr>
     </div>
     <% else %>
-    <div class="table-responsive">
-       <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Total</th>
-              <th scope="col">Fecha</th>
-              <th scope="col"><i class="fas fa-eye"></i></th>
-            </tr>
-          </thead>
+    <h2><i class="fas fa-receipt" style="color: #2078AD;"></i> Tus reservas</h2>
+    <hr>
+    <br>
+    <div class="row">
+      <% @receipts.each do |receipt| %>
+      <% if current_user == receipt.user %>
+      <div class="col-md-3">
+        <div >
+          <div class="" style="background-color: #2078AD;">
+            <p style="color: white; margin-bottom: 0px !important; padding-left: 10px;">Reserva #<%= receipt.id %> </p>
+          </div>
+          <div>
+            <% if current_user == receipt.user %>
+            <% if receipt.receipt_items.first and receipt.receipt_items.first.product %>
+            <div class="banner-receipt" style="background-image: url(<%= cl_image_path receipt.receipt_items.first.product.photos[0].key%>);">
+            </div>
 
-          <tbody>
-              <% @receipts.each do |receipt| %>
-              <% if current_user == receipt.user %>
-              <tr>
-                <th scope="row"><%= receipt.id %></th>
-                <% if receipt.receipt_items.first.product %>
-                <th scope="row"><%= receipt.receipt_items.first.product.titulo %></th>
-                <% else  %>
-                <th scope="row">Producto Eliminado</th>
-                <% end %>
-                <th scope="row"><%= receipt.price %></th>
-                <th scope="row"><%= receipt.created_at %></th>
-                <th scope="row"><%= link_to 'Ver', receipt %></th>
-              </tr>
+            <h3 style=""><%= receipt.receipt_items.first.product.titulo %></h3>
+            <% else  %>
+            <div style="background-color: #2078AD;">
+            <div class="banner-receipt" style="background-image: url(<%= asset_path('8.png')%>);">
+            </div>
+            </div>
+            <h3>Producto Eliminado</h3>
             <% end %>
-
+            <div style="display: flex; justify-content: space-between; s">
+            <p style="">$ <%= '%.2f' % receipt.price %></p>
+            <p><%= receipt.created_at.strftime("%Y-%m-%d") %></p>
+            </div>
+            <%= link_to 'Ver', receipt, class: 'btn btn-boat' %>
             <% end %>
-          </tbody>
-        </table>
+          </div>
+          <br>
+          <br>
+        </div>
       </div>
-      <br>
-      <hr>
+      <% end %>
+      <% end %>
     </div>
+    <hr>
     <% end %>
   </div>
 </div>

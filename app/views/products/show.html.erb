@@ -97,18 +97,18 @@
         <div style="display: flex;">
         <div style="padding-right: 20px;">
         <p>Desde</p>
-        <%= f.date_field :start_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
+        <%= f.date_field :start_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control', required: true  %>
         </div>
         <div>
         <p>Hasta</p>
-        <%= f.date_field :end_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
+        <%= f.date_field :end_date, as: :date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control', required: true  %>
         </div>
       </div>
         <br>
         <% if products.include? @product.id %>
           <a class="btn btn-boat" href='/baskets'><i class="fas fa-shopping-basket"></i>  Agregar</a>
         <% else %>
-          <%= f.submit "Add to Card ", class: "btn btn-boat"%>
+          <%= f.submit "Reservar", class: "btn btn-boat"%>
         <% end %>
 
         <% end %>

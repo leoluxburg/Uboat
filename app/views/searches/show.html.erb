@@ -1,0 +1,46 @@
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="" style=" background-color: white; width: 100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;">
+    <br>
+    <div class="container">
+        <div class="text-center">
+          <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ALQUILER DE EQUIPO MARINO</h1>
+          <p style="font-family: 'Raleway', sans-serif;">Encuentra todo lo que necesitas para tu proxima aventura en el mar.</p>
+        </div>
+        <br>
+
+        <%= simple_form_for(@search)  do |f| %>
+        <div class="row">
+         <div class="col-md-1"></div>
+         <div class="col-md-8">
+          <%= f.input :category,  collection: ['Naves', 'Servicios', 'Tours', 'Accesorios', 'Tablas'], label: false%>
+
+          </div>
+          <div class="col-md-2"><%=f.button :submit, 'Buscar', class: 'btn btn-boat space' %></div>
+          <div class="col-md-1"></div>
+        </div>
+        <% end %>
+        <br>
+      </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container">
+  <br>
+  <div class="row">
+    <% if @data.search_product.empty? %>
+    <p>0 Resultados. </p>
+      <% else %>
+   <% @data.search_product.each do |product| %>
+   <div class="col-md-3">
+    <%= render product %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+</div>
+

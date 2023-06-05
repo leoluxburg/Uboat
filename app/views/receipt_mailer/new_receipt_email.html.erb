@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style>
+    .header {
+      background-color: #2078AD;
+      text-align: center;
+    }
+    .content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .info {
+      display: flex;
+      gap: 30px;
+    }
+    .info div {
+      padding-right: 20px;
+     }
+     .product {
+     display:flex;
+      justify-content: space-between;
+      }
+      .footer {
+      background-color: #2078AD;
+      text-align: center;
+      color: white;
+      padding:10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <br>
+    <br>
+    <img src="https://i.ibb.co/CJpkZ7V/footerlogo.png" alt="" height="150">
+    <br>
+    <br>
+  </div>
+
+  <div>
+    <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <h1>Numero de Reserva #<%= @receipt.id %></h1>
+      <hr>
+      <% @receipt.receipt_items.each_with_index do |item| %>
+      <% if item.product %>
+      <h2>Informacion de Usuario</h2>
+      <div class="info">
+        <div class="">
+          <p><strong>Nombre completo:</strong> <%= @receipt.user.profile.nombre_completo %></p>
+          <p><strong>Nacionalidad:</strong> <%= @receipt.user.profile.nacionalidad %></p>
+        </div>
+        <div class="">
+          <p><strong>Correo Electronico:</strong> <%= @receipt.user.email %></p>
+          <p><strong>Telefono:</strong> <%= @receipt.user.profile.telefono %></p>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <br>
+      <h2>Informacion de Facturacion</h2>
+      <div class="info">
+        <div class="">
+          <p>
+            <strong>Nombre:</strong>
+            <%= @receipt.first_name %>
+          </p>
+
+          <p>
+            <strong>Correo Electronico:</strong>
+            <%= @receipt.email %>
+          </p>
+        </div>
+
+        <div class="">
+          <p>
+            <strong>Apellido:</strong>
+            <%= @receipt.last_name %>
+          </p>
+
+
+          <p>
+            <strong>Telefono:</strong>
+            <%= @receipt.phone %>
+          </p>
+        </div>
+    </div>
+    <div class="">
+
+         <p>
+          <strong>Pais:</strong>
+          <%= @receipt.shipping_country %>
+        </p>
+        <p>
+          <strong>Ciudad:</strong>
+          <%= @receipt.shipping_city %>
+        </p>
+
+        <p>
+          <strong>Codigo Postal:</strong>
+          <%= @receipt.shipping_postal_code %>
+        </p>
+
+        <p>
+          <strong>Direccion:</strong>
+          <%= @receipt.shipping_address_line_1 %>
+        </p>
+
+
+      </div>
+    <p>
+      <strong>Order notes:</strong>
+      <%= @receipt.order_notes %>
+    </p>
+    <br>
+    <h2>Informacion de Producto</h2>
+    <% @receipt.receipt_items.each_with_index do |item, index| %>
+    <% if item.product %>
+    <% index += 1 %>
+    <div class="product">
+      <div>
+        <h3><%= index %> - <%= item.product.titulo %> </h3>
+        <p><strong>Propietario: </strong><%= item.product.user.profile.nombre_completo%></p>
+
+        <p><strong>De:</strong> <%= item.end_date.strftime("%a, %d %b %Y")%> | <strong>Hasta:</strong> <%= item.start_date.strftime("%a, %d %b %Y")%> </p>
+      </div>
+      <div>
+        <h3>$ <%= '%.2f' % item.total %> </h3>
+      </div>
+    </div>
+    <% else %>
+    <h2>Producto Eliminado</h2>
+    <% end %>
+    <% end %>
+    <hr>
+    <div class="basket-item">
+      <div>
+        <h4> Subtotal: $ <%= '%.2f' %  @receipt.price  %> </h4>
+        <h3> Total: $ <%= '%.2f' %  @receipt.price  %></h3>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+
+<p>©2023 UBoat</p>
+
+</div>
+</body>
+</html>

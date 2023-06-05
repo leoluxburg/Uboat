@@ -14,6 +14,8 @@
 
        <% if @user.profile.photo.attached? %>
         <%= cl_image_tag @user.profile.photo.key, height: 500, width: 500, crop: :fill, class: "avatar-profile" %>
+        <% else  %>
+        <%= image_tag("user-boat.png")%>
         <% end %>
 
       <br>
@@ -26,26 +28,34 @@
        <% end %>
        <br>
          <div class="row">
+          <% if current_user.vendedor === true %>
              <div class="col-md-4">
               <a href="/your_products">
                 <div class="card-categoryv2" style="background-color: #2078AD;">
                   <div style="">
-                    <%= image_tag("9.png")%>
+                    <%= image_tag("1.png")%>
                   </div>
                 </div>
               </a>
             </div>
+            <div class="col-md-4">
+              <a href="/your_clients">
+                <div class="card-categoryv2" style="background-color: #2078AD;">
+                  <div style="">
+                    <%= image_tag("2.png")%>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% end %>
             <div class="col-md-4">
                 <a href="/receipts">
                 <div class="card-categoryv2" style="background-color: #2078AD;">
                   <div style="">
-                    <%= image_tag("10.png")%>
+                    <%= image_tag("3.png")%>
                   </div>
                 </div>
               </a>
-
-            </div>
-            <div class="col-md-4">
             </div>
           </div>
        <br>

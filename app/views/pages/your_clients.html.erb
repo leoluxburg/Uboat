@@ -3,7 +3,7 @@
 <div class="container">
   <div class="div" style="padding-top: 100px;">
     <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-      <h2><i class="fas fa-receipt" style="color: #2078AD;"></i> Ordenes</h2>
+      <h2><i class="fas fa-receipt" style="color: #2078AD;"></i> Tus Clientes</h2>
       <hr>
       <% if current_user.admin  %>
       <div class="table-responsive">
@@ -53,7 +53,7 @@
 
           <tbody>
               <% @receipts.each do |receipt| %>
-              <% if receipt.receipt_items.first.product %>
+              <% if receipt.receipt_items.first and receipt.receipt_items.first.product %>
               <% if current_user == receipt.receipt_items.first.product.user %>
               <tr>
                 <th scope="row"><%= receipt.id %></th>

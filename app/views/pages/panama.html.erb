@@ -1,0 +1,25 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://www.caf.com/media/3682081/panama-1.jpg?anchor=center&mode=crop&width=777&height=437&rnd=132901676710000000)";>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: white; font-size: 60px;">Productos en Panamá</h1>
+        <p style="color: white;">Conoce todos los productos disponible en la Provincia de Panamá. </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div>
+  <div class="container">
+    <br>
+    <div class="row">
+      <% @products.each do |product| %>
+      <div class="col-md-3">
+        <%= render product %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

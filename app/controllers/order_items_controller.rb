@@ -1,13 +1,22 @@
 class OrderItemsController < ApplicationController
   def create
+    if current_order.order_items.size >= 1
+      current_order.order_items.clear
+    end
     @order = current_order
     @order_item = @order.order_items.new(order_params)
     if @order_item.quantity == nil
       @order_item.set_quantity_from_dates
     end
-    @order.save
-    session[:order_id] = @order.id
-    redirect_to baskets_path
+    @order_item.save
+    if @order_item.save
+      @order.save
+      session[:order_id] = @order.id
+      redirect_to baskets_path
+    else
+      flash[:notice] = "Error en las fechas seleccionadas"
+      redirect_to product_url(@order_item.product)
+    end
   end
 
   def update

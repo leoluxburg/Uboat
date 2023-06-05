@@ -1,6 +1,26 @@
 <div id="<%= dom_id receipt %>">
-
-
+<% @receipt.receipt_items.each_with_index do |item| %>
+<% if item.product %>
+<% if item.product.user_id === current_user.id %>
+<h4>Cliente</h4>
+<div class="row">
+  <div class="col-md-2">
+    <%= image_tag("user-boat.png", height: "100px")%>
+  </div>
+  <div class="col-md-5 text-start">
+    <p><strong>Nombre completo:</strong> <%= @receipt.user.profile.nombre_completo %></p>
+    <p><strong>Nacionalidad:</strong> <%= @receipt.user.profile.nacionalidad %></p>
+  </div>
+  <div class="col-md-5 text-start">
+    <p><strong>Correo Electronico:</strong> <%= @receipt.user.email %></p>
+    <p><strong>Telefono:</strong> <%= @receipt.user.profile.telefono %></p>
+  </div>
+</div>
+<% end %>
+<% end %>
+<% end %>
+<br>
+<h4>Informacion de Facturacion</h4>
   <div class="row">
     <div class="col-md-6">
       <p>
@@ -54,37 +74,28 @@
 </div>
 
 <p>
-  <strong>Shipping address line 1:</strong>
+  <strong>Shipping address:</strong>
   <%= receipt.shipping_address_line_1 %>
 </p>
-
-<p>
-  <strong>Shipping address line 2:</strong>
-  <%= receipt.shipping_address_line_2 %>
-</p>
-
 
 <p>
   <strong>Order notes:</strong>
   <%= receipt.order_notes %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= receipt.status %>
-</p>
 
-
-
+<br>
 </div>
-<p>Items</p>
+<h4>Productos</h4>
 <% @receipt.receipt_items.each_with_index do |item, index| %>
 <% if item.product %>
 <% index += 1 %>
 <div class="basket-item">
   <div>
     <h3><%= index %> - <%= item.product.titulo %> </h3>
-    <h6>Owner: <%= item.product%></h6>
+    <p><strong>Propietario: </strong><%= item.product.user.profile.nombre_completo%></p>
+
+    <p><strong>De:</strong> <%= item.end_date.strftime("%a, %d %b %Y")%> | <strong>Hasta:</strong> <%= item.start_date.strftime("%a, %d %b %Y")%> </p>
   </div>
   <div>
     <h2><i class="fas fa-dollar-sign" style="color: #2078AD;"></i> <%= '%.2f' % item.total %> </h2>
@@ -97,7 +108,7 @@
 <hr>
 <div class="basket-item">
   <div>
-    <h4> Subtotal: </h4>
+    <h4> Subtotal: <%= '%.2f' %  @receipt.price  %></h4>
     <h3> Total: <%= '%.2f' %  @receipt.price  %></h3>
   </div>
 </div>

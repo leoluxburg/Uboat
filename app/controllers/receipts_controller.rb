@@ -31,6 +31,7 @@ class ReceiptsController < ApplicationController
     @receipt.price = @order.subtotal
     respond_to do |format|
       if @receipt.save
+         ReceiptMailer.with(receipt: @receipt).new_receipt_email.deliver_later
         current_order.order_items.each do |item|
           ReceiptItem.create!(product_id: item.product_id, quantity: item.quantity , receipt_id: @receipt.id,  start_date: item.start_date, end_date: item.end_date )
         end
@@ -47,24 +48,34 @@ class ReceiptsController < ApplicationController
 
   # PATCH/PUT /receipts/1 or /receipts/1.json
   def update
-    respond_to do |format|
-      if @receipt.update(receipt_params)
-        format.html { redirect_to receipt_url(@receipt), notice: "Receipt was successfully updated." }
-        format.json { render :show, status: :ok, location: @receipt }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @receipt.errors, status: :unprocessable_entity }
+    if current_user.admin
+      respond_to do |format|
+        if @receipt.update(receipt_params)
+          if @receipt.status === ""
+            @receipt.status = 'En progreso'
+            @receipt.save
+          end
+          format.html { redirect_to receipt_url(@receipt), notice: "Receipt was successfully updated." }
+          format.json { render :show, status: :ok, location: @receipt }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @receipt.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
   # DELETE /receipts/1 or /receipts/1.json
   def destroy
+    if current_user.admin
     @receipt.destroy
 
     respond_to do |format|
       format.html { redirect_to receipts_url, notice: "Receipt was successfully destroyed." }
       format.json { head :no_content }
+    end
     end
   end
 

@@ -1,10 +1,46 @@
-<h1>Editing receipt</h1>
-
-<%= render "form", receipt: @receipt %>
-
 <br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="div" style="">
+      <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+       <h2><i class="fas fa-receipt" style="color: #2078AD;"></i> Actualizar Orden</h2>
+       <hr>
+       <div id="container-form" >
+        <% if current_user.admin %>
+        <%= simple_form_for(@receipt) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<div>
-  <%= link_to "Show this receipt", @receipt %> |
-  <%= link_to "Back to receipts", receipts_path %>
+        <div class="form-inputs">
+          <h5><i class="fas fa-user" style="color: #2078AD;"></i> Status</h5>
+          <div class="row">
+            <div class="col-md-6"><%= f.input :status, :collection => ['Confirmado','Completado'], required: true  %></div>
+            <div class="col-md-6"></div>
+          </div>
+        <div>
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn btn-boat' %>
+          </div>
+
+        </div>
+      </div>
+
+      <% end %>
+       <% end %>
+      <br>
+
+      <div>
+        <%= link_to "Show this receipt", @receipt %> |
+        <%= link_to "Back to receipts", receipts_path %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
 </div>
+</div>
+</div>
+<br>
+<br>
