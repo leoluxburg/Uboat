@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :locations, :aboutus, :contact, :panama ]
+  skip_before_action :authenticate_user!, only: [ :home, :locations, :about_us, :contact, :panama ]
 
   def home
     @order_items = current_order.order_items
