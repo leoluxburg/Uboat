@@ -2,9 +2,11 @@
 <div style="padding-bottom: 20px">
   <div class="card-trip">
     <img src="<%= cl_image_path product.photos[0].key, height: 300, crop: :fill %>" />
+    <div class="card-trip-title" style="padding-left:16px; padding-right:16px; padding-top:16px;">
+    <p><%= product.titulo %> </p>
+  </div>
     <div class="card-trip-infos">
       <div>
-        <p><%= product.titulo %> </p>
         <p><i class="fas fa-anchor" style="color: #2078AD;"></i> <%= product.categoria %></p>
       </div>
       <p class="card-trip-pricing"> $ <%= '%.2f' % product.precio %></p>

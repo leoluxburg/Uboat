@@ -6,7 +6,7 @@
   <div class="container">
     <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
       <br>
-      <h2 style="font-family: 'IM Fell DW Pica SC', serif;"><i class="fas fa-user"  style="color: #2078AD;"></i> TUS PRODUCTOS</h2>
+      <h2 style="font-family: 'IM Fell DW Pica SC', serif;"><i class="fas fa-user"  style="color: #2078AD;"></i> Tus Productos</h2>
       <hr>
       <div class="">
        <br>
@@ -35,7 +35,7 @@
 
       </div>
       <br>
-       <% if  current_user.vendedor == true %>
+       <% if  current_user %>
         <a class="btn btn-boat" href="/products/new"><i class="fas fa-store"></i> Registrar Producto</a>
        <% end %>
        <br>

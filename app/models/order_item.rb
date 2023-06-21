@@ -12,7 +12,7 @@ class OrderItem < ApplicationRecord
   validate :no_overlap_with_existing_records
 
   def no_overlap_with_existing_records
-    overlapping_records = OrderItem.where.not(id: id)
+    overlapping_records = ReceiptItem.where.not(id: id)
                                   .where("(start_date, end_date) OVERLAPS (?, ?)", start_date, end_date)
 
     if overlapping_records.exists?

@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   end
 
   def your_clients
-    if current_user.vendedor === true
+    if current_user
       @receipts = Receipt.all
     else
       redirect_to root_path
@@ -33,7 +33,7 @@ class PagesController < ApplicationController
   end
 
   def your_products
-    if current_user.vendedor === true
+    if current_user
       @user = current_user
     else
       redirect_to root_path

@@ -20,15 +20,7 @@
    <div class="col-md-4"><%= f.input :shipping_postal_code, as: :string%></div>
  </div>
  <div class="row">
-  <div class="col-md-6"><%= f.input :shipping_address_line_1 %></div>
-</div>
-<h5><i class="fas fa-credit-card" style="color: #2078AD;"></i> Pago</h5>
-<%= f.input :cardholder_name %>
-<div class="row">
-  <div class="col-md-7"><%= f.input :credit_card_number %></div>
-  <div class="col-md-1"><%= f.input :cvv_code, label: 'CVV' %></div>
-  <div class="col-md-2"><%= f.input :expiration_month, label: 'Exp. Month' %></div>
-  <div class="col-md-2"><%= f.input :expiration_year, label: 'Exp. Year' %></div>
+  <div class="col-md-12"><%= f.input :shipping_address_line_1 %></div>
 </div>
 <h5><i class="fas fa-align-justify" style="color: #2078AD;"></i>Nota</h5>
 <%= f.input :order_notes %>
@@ -44,9 +36,66 @@
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-boat' %>
     </div>
-
+    <div align="center">
+      <div id="container-form" style="width: 45%;"></div>
+    </div>
   </div>
 </div>
-
 <% end %>
+<script>
+        const getUrlParam = (key) => new URLSearchParams(window.location.search).get(key);
 
+          pfWallet = pfWallet || {};
+          let apiKey = "";
+          let cclw = "";
+
+          apiKey = "DB05C1F758097171675A6DC698B68371F0336219CBC12FDB5929BFB243B120A4095584DE264D622DBD984501436CEB09AD76C3CBEFD02140D16A855BB3FE4B62";
+          cclw = "SlLmEttBcJBgyYjIq4CasgIEsOtrFaZm|DIRsmLbEXTpKcsUWnrmHh4Qtj"; //Código Web
+          pfWallet.useAsSandbox(false);
+
+          pfWallet.openService({
+              apiKey: apiKey,
+              cclw: cclw
+          }).then(function (merchantSetup) {
+              startMerchantForm(merchantSetup);
+          }, function (error) {
+              console.log(error);
+          });
+
+          let sdk;
+          function startMerchantForm(merchantSetup) {
+              let paymentInfo = {
+                  amount: 1.0,
+                  discount: 0.0,
+                  taxAmount: 0.0,
+                  description: getUrlParam('descripcion')
+              };
+              console.log("merchantSetup", merchantSetup);
+              let setup = {
+                  lang: 'es',
+                  embedded: (getUrlParam('boton') == "false"),
+                  // type: 'lk',
+                  // code: 'LK-MAIMLMD1FKSQKCHU',
+                  container: 'container-form',
+                  onError: function (data) {
+                      console.error("errors", data);
+                  },
+                  onTxSuccess: function (data) {
+                      console.log("onTxSuccess", data);
+                      window.location.href = pfWallet.pfHostViews + `/pf/default-receipt/${data?.Oper}`;
+                  },
+                  onTxError: function (data) {
+                      console.error("when the onTxError, in other process", data);
+                  },
+                  onClose: function () {
+                      console.log("onClose called");
+                  }
+              };
+              sdk = merchantSetup.init(
+                  merchantSetup.dataMerchant,
+                  paymentInfo,
+                  setup
+              );
+          }
+
+      </script>
