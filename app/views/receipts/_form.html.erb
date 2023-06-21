@@ -42,15 +42,15 @@
   </div>
 </div>
 <% end %>
-<script>
+  <script>
         const getUrlParam = (key) => new URLSearchParams(window.location.search).get(key);
 
           pfWallet = pfWallet || {};
           let apiKey = "";
           let cclw = "";
 
-          apiKey = "DB05C1F758097171675A6DC698B68371F0336219CBC12FDB5929BFB243B120A4095584DE264D622DBD984501436CEB09AD76C3CBEFD02140D16A855BB3FE4B62";
-          cclw = "SlLmEttBcJBgyYjIq4CasgIEsOtrFaZm|DIRsmLbEXTpKcsUWnrmHh4Qtj"; //Código Web
+          apiKey = "SlLmEttBcJBgyYjIq4CasgIEsOtrFaZm|DIRsmLbEXTpKcsUWnrmHh4Qtj";
+          cclw = "DB05C1F758097171675A6DC698B68371F0336219CBC12FDB5929BFB243B120A4095584DE264D622DBD984501436CEB09AD76C3CBEFD02140D16A855BB3FE4B62"; //Código Web
           pfWallet.useAsSandbox(false);
 
           pfWallet.openService({
@@ -65,7 +65,7 @@
           let sdk;
           function startMerchantForm(merchantSetup) {
               let paymentInfo = {
-                  amount: 1.0,
+                  amount: 12.34,
                   discount: 0.0,
                   taxAmount: 0.0,
                   description: getUrlParam('descripcion')
