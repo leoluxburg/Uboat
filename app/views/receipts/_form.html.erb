@@ -35,9 +35,7 @@
   <div>
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-boat' %>
-    </div>
-    <div align="center">
-      <div id="container-form" style="width: 45%;"></div>
+      <div id="container-form" ></div>
     </div>
   </div>
 </div>
@@ -65,7 +63,7 @@
           let sdk;
           function startMerchantForm(merchantSetup) {
               let paymentInfo = {
-                  amount: 12.34,
+                  amount: '<%= current_order.subtotal %>',
                   discount: 0.0,
                   taxAmount: 0.0,
                   description: getUrlParam('descripcion')
