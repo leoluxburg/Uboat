@@ -13,28 +13,22 @@
         <%= simple_form_for(@receipt) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
         <div class="form-inputs">
           <h5><i class="fas fa-user" style="color: #2078AD;"></i> Status</h5>
           <div class="row">
-            <div class="col-md-6"><%= f.input :status, :collection => ['Confirmado','Completado'], required: true  %></div>
-            <div class="col-md-6"></div>
+            <div class="col-md-12"><%= f.input :status, :collection => ['Confirmado','Completado'], required: true  %></div>
           </div>
         <div>
+          <hr>
           <div class="form-actions">
             <%= f.button :submit, class: 'btn btn-boat' %>
           </div>
-
         </div>
       </div>
-
       <% end %>
        <% end %>
       <br>
-
       <div>
-        <%= link_to "Show this receipt", @receipt %> |
-        <%= link_to "Back to receipts", receipts_path %>
       </div>
     </div>
   </div>

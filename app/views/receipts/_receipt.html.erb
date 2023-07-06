@@ -1,4 +1,4 @@
-<div id="<%= dom_id receipt %>">
+<div id="">
 <% @receipt.receipt_items.each_with_index do |item| %>
 <% if item.product %>
 <% if item.product.user_id === current_user.id %>
@@ -19,7 +19,6 @@
 <% end %>
 <% end %>
 <% end %>
-<br>
 <h4>Informacion de Facturacion</h4>
   <div class="row">
     <div class="col-md-6">
@@ -82,7 +81,7 @@
   <strong>Order notes:</strong>
   <%= receipt.order_notes %>
 </p>
-
+<%= link_to "Cobertura", check_out_path(receipt_id: @receipt.id), class: "" %>
 
 <br>
 </div>

@@ -11,14 +11,23 @@ class OrderItem < ApplicationRecord
   validate :start_date_cannot_be_in_the_past
   validate :no_overlap_with_existing_records
 
+
   def no_overlap_with_existing_records
-    overlapping_records = ReceiptItem.where.not(id: id)
+  overlapping_records = ReceiptItem.joins(:product)
+                                  .where.not(id: id)
+                                  .where(products: { id: product_id })
                                   .where("(start_date, end_date) OVERLAPS (?, ?)", start_date, end_date)
 
-    if overlapping_records.exists?
-      errors.add(:base, "Dates overlap with existing records")
-    end
+  puts 'good dates'
+  overlapping_records.each do |r|
+    puts r
   end
+
+  if overlapping_records.exists?
+    errors.add(:base, "Dates overlap with existing records")
+  end
+end
+
 
   def end_date_must_be_after_start_date
     if start_date && end_date && end_date <= start_date

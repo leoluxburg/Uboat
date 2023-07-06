@@ -4,4 +4,5 @@ class Profile < ApplicationRecord
   validates :nombre_completo, presence: true
   validates :telefono, presence: true
   validates :fecha_de_nacimiento, presence: true
+  validates :nacionalidad, presence: true
 end

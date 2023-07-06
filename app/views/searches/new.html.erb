@@ -7,19 +7,45 @@
           <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ALQUILER DE EQUIPO MARINO</h1>
           <p style="font-family: 'Raleway', sans-serif;">Encuentra todo lo que necesitas para tu proxima aventura en el mar.</p>
         </div>
-        <br>
-
-        <%= simple_form_for(@search)  do |f| %>
-        <div class="row">
-         <div class="col-md-1"></div>
-         <div class="col-md-8">
-          <%= f.input :category, collection: ['Naves', 'Servicios', 'Tours', 'Accesorios', 'Tablas'], label: false, default: 1%>
-
-          </div>
-          <div class="col-md-2"><%=f.button :submit, 'Buscar', class: 'btn btn-boat space' %></div>
-          <div class="col-md-1"></div>
+        <%= form_for(@search) do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.label :category, class: "form-label" %>
+                <%= f.select :category, @categories, { prompt: "Select a category" }, { class: "form-select", id: "categories", onChange:"handleChange('subcategories', 'sub_categories', 'categories')"} %>
+              </div>
+              <div class="col-md-6">
+                <%= f.label :subcategory, class: "form-label" %>
+                <%= f.select :subcategory,[], {prompt: "Select a subcategory"}, { id: "sub_categories",  class: "form-select" }%>
+              </div>
+            </div>
         </div>
-        <% end %>
+        <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.label :province, class: "form-label" %>
+                <%= f.select :province, @provinces,  { prompt: "Select a province" },{ class: "form-select", id: "province",  onChange:"handleChange('districts', 'district', 'province')"} %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.label :district, class: "form-label" %>
+                <%= f.select :district, [],  { prompt: "Select a district" }, { class: "form-select", id: "district",  onChange:"handleChange('states', 'corregimiento', 'district')" } %>
+              </div>
+            </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <%=f.submit 'Buscar', class: 'btn btn-boat space' %>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+      <% end %>
         <br>
       </div>
     </div>
@@ -50,10 +76,13 @@
   <br>
   <br>
   <div class="row">
-   <% @products.each do |product| %>
+   <% @valid_products.reverse[0..3].each do |product| %>
+   <% if product.activacion === 'Activo' and product.estatus === 'Valido' %>
    <div class="col-md-3">
+
       <%= render product %>
     </div>
+    <% end %>
   <% end %>
   </div>
 </div>
@@ -98,3 +127,33 @@
     </div>
   </div>
 </div>
+<script>
+
+window.handleChange = function(url, destinyId, actionId){
+  var selector = document.getElementById(destinyId);
+  selector.innerHTML = '';
+  var newOption = document.createElement('option');
+  newOption.value = ""
+  newOption.text = `Select a ${destinyId}`
+  selector.appendChild(newOption);
+
+  var param = $(`#${actionId}`).val()
+  debugger
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: `/products/${param}/${url}`,
+      success: function(data){
+        debugger
+       var value = data.value
+        for(let i =0; i < (value && value.length); i++){
+          var newOption1 = document.createElement('option');
+          newOption1.value = value[i]
+          newOption1.text = value[i]
+          selector.appendChild(newOption1);
+        }
+      }
+    });
+}
+</script>
+

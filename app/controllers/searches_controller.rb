@@ -1,14 +1,18 @@
 class SearchesController < ApplicationController
    skip_before_action :authenticate_user!, only: [ :show, :new, :create ]
    def show
+        @categories = Category.all.pluck(:title)
+        @provinces = Province.all.pluck(:title)
         @search = Search.new
         @data = Search.find(params[:id])
     end
 
     def new
+      @categories = Category.all.pluck(:title)
+      @provinces = Province.all.pluck(:title)
       @search = Search.new
-      @order_items = current_order.order_items
-      @products = Product.all[0..3]
+      @products = Product.all
+      @valid_products = @products.where(activacion: 'Activo', estatus: 'Valido')
     end
 
     def create
@@ -16,9 +20,25 @@ class SearchesController < ApplicationController
         redirect_to @search
     end
 
+    def subcategories
+      @target = params[:target]
+      @subcategories = Subcategory.joins(:category).where("categories.title LIKE ?", "%#{params[:category]}%").pluck(:name)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    end
+
+    def districts
+      @target = params[:target]
+      @districts = District.joins(:province).where("provinces.title LIKE ?", "%#{params[:province]}%").pluck(:name)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    end
+
     private
 
     def search_params
-        params.require(:search).permit(:category, :province)
+        params.require(:search).permit(:category, :province, :subcategory, :district, :budget, :bay)
     end
 end

@@ -10,7 +10,47 @@
        <hr>
        <div id="container-form" >
 
-        <%= render "form", receipt: @receipt %>
+        <%= simple_form_for(@receipt) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <h5><i class="fas fa-user" style="color: #2078AD;"></i> Contacto</h5>
+          <div class="row">
+            <div class="col-md-6"><%= f.input :first_name, input_html: { required: true } %></div>
+            <div class="col-md-6"><%= f.input :last_name, input_html: { required: true } %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6"><%= f.input :email, input_html: { required: true } %></div>
+            <div class="col-md-6"><%= f.input :phone, input_html: { required: true } %></div>
+          </div>
+          <h5><i class="fas fa-truck" style="color: #2078AD;"></i> Envio y Facturacion</h5>
+
+          <div class="row">
+           <div class="col-md-4"><%= f.input :shipping_country, as: :string, input_html: { required: true }%></div>
+           <div class="col-md-4"><%= f.input :shipping_city, as: :string, input_html: { required: true }%></div>
+           <div class="col-md-4"><%= f.input :shipping_postal_code, as: :string, input_html: { required: true }%></div>
+         </div>
+         <div class="row">
+          <div class="col-md-12"><%= f.input :shipping_address_line_1, input_html: { required: true } %></div>
+        </div>
+        <h5><i class="fas fa-align-justify" style="color: #2078AD;"></i>Nota</h5>
+        <%= f.input :order_notes %>
+
+        </div>
+        <hr>
+        <div class="basket-item">
+          <div>
+            <h4> Subtotal: <%= '%.2f' % current_order.subtotal %></h4>
+            <h3> Total: <%= '%.2f' % current_order.subtotal %></h3>
+          </div>
+          <div>
+            <div class="form-actions">
+              <%= f.button :submit, class: 'btn btn-boat'%>
+            </div>
+          </div>
+        </div>
+        <% end %>
 
       </div>
     </div>

@@ -1,0 +1,108 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+  <div class="mb-3">
+    <%= f.label :categoria, class: "form-label" %>
+    <%= f.select :categoria, @categories, { prompt: "Select a category" }, { class: "form-select", id: "categories", onChange:"handleChange('subcategories', 'sub_categories', 'categories')"} %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :subcategoria, class: "form-label" %>
+    <%= f.select :subcategoria,[@product.subcategoria], {prompt: "Select a subcategory"}, { id: "sub_categories",  class: "form-select" }%>
+  </div>
+</div>
+ <div class="row">
+    <div class="col-md-8">
+      <%= f.label :titulo, class: "form-label" %>
+      <%= f.text_field :titulo, { required: true, class: "form-control"  } %>
+    </div>
+    <div class="col-md-2">
+      <%= f.label :precio, 'Precio por dia ($)', class: "form-label" %>
+      <%= f.number_field :precio, { required: true, class: "form-control", placeholder: "0.00"  } %>
+    </div>
+     <div class="col-md-2">
+    <%= f.label :activacion, class: "form-label" %>
+    <%= f.select :activacion, ['Activo', 'Desactivo'], { prompt: "" }, { required: true, class: "form-select"  } %>
+  </div>
+  </div>
+  <br>
+<div class="row">
+  <div class="mb-3">
+  <%= f.label :descripcion, class: "form-label" %>
+  <%= f.text_area :descripcion, class: "form-control" %>
+  </div>
+</div>
+<div >
+  <div class="mb-3">
+    <%= f.label :provincia, class: "form-label" %>
+    <%= f.select :provincia, @provinces,  { prompt: "Select a province" },{ class: "form-select", id: "province",  onChange:"handleChange('districts', 'district', 'province')"} %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <%= f.label :distrito, 'Distrito *',  class: "form-label" %>
+    <%= f.select :distrito, [@product.distrito],  { prompt: "Select a district" }, { class: "form-select",required: true, id: "district",  onChange:"handleChange('states', 'corregimiento', 'district')" } %>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :corregimiento, 'Corregimiento *',  class: "form-label" %>
+    <%= f.select :corregimiento, [@product.corregimiento],  { prompt: "Select a corregimiento" }, { class: "form-select", id: "corregimiento", required: true, onChange:"handleChange('sectors', 'sector', 'corregimiento')" } %>
+  </div>
+  <div class="col-md-4">
+    <% marinas_panama = ["Balboa Yacht Club - Ciudad de Panamá","Flamenco Marina - Isla Flamenco, Ciudad de Panamá","Shelter Bay Marina - Colón","Vista Mar Marina - San Carlos","Red Frog Beach Marina - Isla Bastimentos, Bocas del Toro","Marina Puerto Lindo - Puerto Lindo, Colón","Marina del Rey - Isla Linton, Bocas del Toro","Marina de la Playita - Ciudad de Panamá","Marina Corotú - David, Chiriquí","Marina Vista Mar - San Carlos","Marina Panamar - Ciudad de Panamá","Marina La Playita - Taboga, Ciudad de Panamá","Marina Cacique - Isla Iguana, Veraguas","Marina La Puntilla - Ciudad de Panamá","Marina de Chiriquí - Boca Chica, Chiriquí","Marina Puerto Azul - Isla Contadora, Archipiélago de Las Perlas","Marina de Pedasí - Pedasí, Los Santos","Marina Puerto Bahía - Punta Chame, Panamá Oeste","Marina Vista Mar - San Carlos","Marina El Capitán - Chame, Panamá Oeste"] %>
+    <%= f.label :marina, 'Marina *',  class: "form-label" %>
+    <%= f.select :marina, marinas_panama,  { prompt: "Select a marina" }, { class: "form-select", id: "marina" } %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col">
+    <%= f.label :direccion, 'Direccion *',  class: "form-label" %>
+    <%= f.text_field :direccion, prompt: "Ejemplo: Calle 8 Este, Casa #15B", required: true, class: "form-control" %>
+  </div>
+</div>
+<br>
+  <div class="row">
+    <div class="col">
+      <%= f.label :photos, class: "form-label" %>
+      <%= f.file_field :photos,{  multiple: true, class: 'form-control file'} %>
+    </div>
+  </div>
+  <hr>
+  <%= f.submit "Guardar Producto", class: "btn btn-boat" %>
+<% end %>
+<script>
+
+window.handleChange = function(url, destinyId, actionId){
+  var selector = document.getElementById(destinyId);
+  selector.innerHTML = '';
+  var newOption = document.createElement('option');
+  newOption.value = ""
+  newOption.text = `Select a ${destinyId}`
+  selector.appendChild(newOption);
+
+  var param = $(`#${actionId}`).val()
+  debugger
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: `/products/${param}/${url}`,
+      success: function(data){
+        debugger
+       var value = data.value
+        for(let i =0; i < (value && value.length); i++){
+          var newOption1 = document.createElement('option');
+          newOption1.value = value[i]
+          newOption1.text = value[i]
+          selector.appendChild(newOption1);
+        }
+      }
+    });
+}
+</script>

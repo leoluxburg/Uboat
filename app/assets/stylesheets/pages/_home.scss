@@ -2,6 +2,9 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'IM Fell DW Pica SC', serif;
 }
+
+a { text-decoration: none; }
+
 .banner {
   background-size: cover;
   background-position: center;
@@ -94,6 +97,9 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   padding: 100px 0;
+}
+
+.modal-footer-link a {
+  color: blue !important;
 }

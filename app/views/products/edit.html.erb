@@ -1,12 +1,40 @@
+
 <div class="container" style="padding-top: 100px;">
   <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <br>
     <h2 style=" font-family: 'IM Fell DW Pica SC', serif;"><i class="fas fa-store" style="color: #2078AD;"></i>Editar Producto</h2>
     <hr>
+    <% if current_user == @product.user  %>
+    <%= render "form_update", product: @product %>
+    <% elsif current_user and current_user.admin %>
+    <%= form_for(@product) do |f| %>
+    <% if @product.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <br>
 
-    <%= render "form", product: @product %>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :estatus, class: "form-label" %>
+        <%= f.select :estatus, ['','Valido', 'Invalido'], { prompt: " Validar producto" }, class: "form-select" %>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <%= f.submit "Guardar Producto", class: "btn btn-boat" %>
+    <% end %>
+    <% else  %>
+        <br>
+    <% end %>
   </div>
 </div>
 <br>
 <br>
 <br>
+

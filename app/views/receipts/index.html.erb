@@ -15,6 +15,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Total</th>
               <th scope="col">Fecha</th>
+              <th scope="col">Estatus</th>
               <th scope="col"><i class="fas fa-eye"></i></th>
               <th scope="col"><i class="fas fa-pencil-alt"></i></th>
             </tr>
@@ -27,6 +28,7 @@
               <th scope="row"><%= receipt.first_name %> <%= receipt.last_name %></th>
               <th scope="row"><%= receipt.price %></th>
               <th scope="row"><%= receipt.created_at %></th>
+              <th scope="row"><%= receipt.status %></th>
               <th scope="row"><%= link_to 'Ver', receipt %></th>
               <th scope="row"><%= link_to 'Editar', edit_receipt_path(receipt) %></th>
             </tr>
@@ -43,6 +45,7 @@
     <br>
     <div class="row">
       <% @receipts.each do |receipt| %>
+      <% if receipt.payment_confirmation %>
       <% if current_user == receipt.user %>
       <div class="col-md-3">
         <div >
@@ -52,9 +55,10 @@
           <div>
             <% if current_user == receipt.user %>
             <% if receipt.receipt_items.first and receipt.receipt_items.first.product %>
+            <% if receipt.receipt_items.first.product.photos[0] %>
             <div class="banner-receipt" style="background-image: url(<%= cl_image_path receipt.receipt_items.first.product.photos[0].key%>);">
             </div>
-
+            <% end -%>
             <h3 style=""><%= receipt.receipt_items.first.product.titulo %></h3>
             <% else  %>
             <div style="background-color: #2078AD;">
@@ -76,8 +80,12 @@
       </div>
       <% end %>
       <% end %>
+      <% end %>
     </div>
     <hr>
+    <% if  current_user %>
+        <a class="btn btn-boat" href="/products"><i class="fas fa-store"></i> Ver Productos</a>
+       <% end %>
     <% end %>
   </div>
 </div>

@@ -10,7 +10,8 @@ class Product < ApplicationRecord
   validates :descripcion, presence: true
   validates :provincia, presence: true
   validates :distrito, presence: true
-  validates :photos, presence: true
+  validates :photos, presence: true, on: :create
+
 
   def self.search(search)
     if search
@@ -19,4 +20,6 @@ class Product < ApplicationRecord
       all
     end
   end
+
+
 end

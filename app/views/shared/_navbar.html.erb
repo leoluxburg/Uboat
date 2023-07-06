@@ -27,7 +27,6 @@
           <%= link_to "Contacto", "/contact_us", class: "nav-link" %>
         </li>
         <% if user_signed_in? %>
-
           <% if current_order%>
           <div id="basket">
             <%= render 'baskets/basket' %>

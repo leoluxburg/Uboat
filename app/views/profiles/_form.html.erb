@@ -20,13 +20,11 @@
          <%= f.input :nacionalidad, :collection => @countries %>
       </div>
       <div class="col-md-4">
-        <%= f.input :fecha_de_nacimiento, start_year: Time.now.year - 100,
-  end_year: Time.now.year,
-  order: %i(day month year) %>
+        <%= f.input :fecha_de_nacimiento, start_year: Time.now.year - 18, end_year: Time.now.year - 100, order: %i(day month year) %>
       </div>
     </div>
   </div>
-  <br>
+  <hr>
   <div class="form-actions">
     <%= f.button :submit, 'Guardar Perfil', class: 'btn btn-boat' %>
   </div>

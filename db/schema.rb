@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_162755) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_06_053145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_162755) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payment_confirmations", force: :cascade do |t|
+    t.string "code"
+    t.bigint "receipt_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receipt_id"], name: "index_payment_confirmations_on_receipt_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "titulo"
     t.string "categoria"
@@ -123,6 +131,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_162755) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "activacion"
+    t.string "estatus"
+    t.string "direccion"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -198,6 +209,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_162755) do
     t.string "province"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subcategory"
+    t.string "district"
+    t.float "budget"
+    t.string "bay"
   end
 
   create_table "sectors", force: :cascade do |t|
@@ -242,6 +257,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_162755) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bays", "sectors"
   add_foreign_key "districts", "provinces"
+  add_foreign_key "payment_confirmations", "receipts"
   add_foreign_key "products", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "receipts", "orders"

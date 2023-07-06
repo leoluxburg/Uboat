@@ -34,66 +34,9 @@
   </div>
   <div>
     <div class="form-actions">
-      <%= f.button :submit, class: 'btn btn-boat' %>
-      <div id="container-form" ></div>
+      <%= f.button :submit, class: 'btn btn-boat'%>
     </div>
   </div>
 </div>
 <% end %>
-  <script>
-        const getUrlParam = (key) => new URLSearchParams(window.location.search).get(key);
 
-          pfWallet = pfWallet || {};
-          let apiKey = "";
-          let cclw = "";
-
-          apiKey = "brEyQRSzMm2UwQa5v0NsobRa3U8nH5xT|DIRbAjFabi5Z3nyJiFRiHL3Fh";
-          cclw = "241484758C8CB86C552834D901E37436280E767CB3974685A4905F3062CB7AAEDE40F9C17FBA47BBE3B8A052E1ED96FD09E1118C8F490DFB42E0233ACBAFBD26"; //Código Web
-          pfWallet.useAsSandbox(true);
-
-          pfWallet.openService({
-              apiKey: apiKey,
-              cclw: cclw
-          }).then(function (merchantSetup) {
-              startMerchantForm(merchantSetup);
-          }, function (error) {
-              console.log(error);
-          });
-
-          let sdk;
-          function startMerchantForm(merchantSetup) {
-              let paymentInfo = {
-                  amount: '<%= current_order.subtotal %>',
-                  discount: 0.0,
-                  taxAmount: 0.0,
-                  description: getUrlParam('descripcion')
-              };
-              console.log("merchantSetup", merchantSetup);
-              let setup = {
-                  lang: 'es',
-                  embedded: (getUrlParam('boton') == "false"),
-                  // type: 'lk',
-                  // code: 'LK-MAIMLMD1FKSQKCHU',
-                  container: 'container-form',
-                  onError: function (data) {
-                      console.error("errors", data);
-                  },
-                  onTxSuccess: function (data) {
-                      console.log("onTxSuccess", data);
-                      window.location.href = pfWallet.pfHostViews + `/pf/default-receipt/${data?.Oper}`;
-                  },
-                  onTxError: function (data) {
-                      console.error("when the onTxError, in other process", data);
-                  },
-                  onClose: function () {
-                      console.log("onClose called");
-                  }
-              };
-              sdk = merchantSetup.init(
-                  merchantSetup.dataMerchant,
-                  paymentInfo,
-                  setup
-              );
-          }
-
-      </script>

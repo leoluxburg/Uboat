@@ -1,0 +1,25 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://upload.wikimedia.org/wikipedia/commons/d/d8/Panama_Embera_0617.jpg)";>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: white; font-size: 60px;">Productos en Embera-Wounaan</h1>
+        <p style="color: white;">Conoce todos los productos disponibles en la Provincia de Embera-Wounaan. </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div>
+  <div class="container">
+    <br>
+    <div class="row">
+      <% @products.each do |product| %>
+      <div class="col-md-3">
+        <%= render product %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

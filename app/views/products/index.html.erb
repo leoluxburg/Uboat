@@ -8,20 +8,65 @@
         <div class="text-center">
           <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: #2078AD;">ALQUILER DE EQUIPO MARINO</h1>
           <p style="font-family: 'Raleway', sans-serif;">Encuentra todo lo que necesitas para tu proxima aventura en el mar.</p>
+          <div class="text-end">
+          <a data-bs-toggle="collapse" href="#multiCollapseExample1" aria-controls="multiCollapseExample1" style=""><i class="fas fa-search"></i> Busqueda Avanzada </a>
+          <br>
         </div>
-        <br>
-
-        <%= simple_form_for(@search)  do |f| %>
-        <div class="row">
-         <div class="col-md-1"></div>
-         <div class="col-md-8">
-          <%= f.input :category, collection: ['Naves', 'Servicios', 'Tours', 'Accesorios', 'Tablas'], label: false, default: 1%>
-
+        </div>
+        <%= form_for(@search) do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :category, class: "form-label" %>
+              <%= f.select :category, @categories, { prompt: "Select a category" }, { class: "form-select", id: "categories", onChange:"handleChange('subcategories', 'sub_categories', 'categories')"} %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :subcategory, class: "form-label" %>
+              <%= f.select :subcategory,[], { prompt: "Select a subcategory"}, { id: "sub_categories",  class: "form-select" }%>
+            </div>
           </div>
-          <div class="col-md-2"><%=f.button :submit, 'Buscar', class: 'btn btn-boat space' %></div>
-          <div class="col-md-1"></div>
         </div>
-        <% end %>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :province, class: "form-label" %>
+              <%= f.select :province, @provinces,  { prompt: "Select a province" },{ class: "form-select", id: "province",  onChange:"handleChange('districts', 'district', 'province')"} %>
+            </div>
+
+            <div class="col-md-6">
+              <%= f.label :district, class: "form-label" %>
+              <%= f.select :district, [],  { prompt: "Select a district" }, { class: "form-select", id: "district",  onChange:"handleChange('states', 'corregimiento', 'district')" } %>
+            </div>
+          </div>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :budget, 'Presupuesto Compra', class: "form-label" %>
+              <%= f.number_field :budget, min: 0, class: "form-control"  %>
+            </div>
+
+            <div class="col-md-6">
+               <% bays_panama = ["Balboa Yacht Club - Ciudad de Panamá","Flamenco Marina - Isla Flamenco, Ciudad de Panamá","Shelter Bay Marina - Colón","Vista Mar Marina - San Carlos","Red Frog Beach Marina - Isla Bastimentos, Bocas del Toro","Marina Puerto Lindo - Puerto Lindo, Colón","Marina del Rey - Isla Linton, Bocas del Toro","Marina de la Playita - Ciudad de Panamá","Marina Corotú - David, Chiriquí","Marina Vista Mar - San Carlos","Marina Panamar - Ciudad de Panamá","Marina La Playita - Taboga, Ciudad de Panamá","Marina Cacique - Isla Iguana, Veraguas","Marina La Puntilla - Ciudad de Panamá","Marina de Chiriquí - Boca Chica, Chiriquí","Marina Puerto Azul - Isla Contadora, Archipiélago de Las Perlas","Marina de Pedasí - Pedasí, Los Santos","Marina Puerto Bahía - Punta Chame, Panamá Oeste","Marina Vista Mar - San Carlos","Marina El Capitán - Chame, Panamá Oeste"] %>
+                <%= f.label :bay, 'Bay',  class: "form-label" %>
+                <%= f.select :bay, bays_panama,  { prompt: "Select a bay" }, { class: "form-select", id: "bay" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <%=f.submit 'Buscar', class: 'btn btn-boat space' %>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+      <% end %>
         <br>
       </div>
   </div>
@@ -33,9 +78,11 @@
   <br>
   <div class="row">
    <% @products.each do |product| %>
+   <% if product.activacion === 'Activo' and product.estatus === 'Valido' %>
    <div class="col-md-3">
     <%= render product %>
   </div>
+  <% end %>
   <% end %>
 </div>
 </div>

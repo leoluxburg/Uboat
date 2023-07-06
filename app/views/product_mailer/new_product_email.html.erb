@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style>
+    .header {
+      background-color: #2078AD;
+      text-align: center;
+    }
+    .content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .info {
+      display: flex;
+      gap: 30px;
+    }
+    .info div {
+      padding-right: 20px;
+     }
+     .product {
+     display:flex;
+      justify-content: space-between;
+      }
+      .footer {
+      background-color: #2078AD;
+      text-align: center;
+      color: white;
+      padding:10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <br>
+    <br>
+    <img src="https://i.ibb.co/CJpkZ7V/footerlogo.png" alt="" height="150">
+    <br>
+    <br>
+  </div>
+
+  <div>
+    <div style="background-color: white; padding: 30px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <h1>Nuevo Producto Registrado #<%= @product.id %></h1>
+      <hr>
+      <h2>Informacion de Usuario</h2>
+      <div class="info">
+        <div class="">
+          <p><strong>Nombre completo:</strong> <%= @product.user.profile.nombre_completo %></p>
+          <p><strong>Nacionalidad:</strong> <%= @product.user.profile.nacionalidad %></p>
+        </div>
+        <div class="">
+          <p><strong>Correo Electronico:</strong> <%= @product.user.email %></p>
+          <p><strong>Telefono:</strong> <%= @product.user.profile.telefono %></p>
+        </div>
+      </div>
+      <br>
+      <h2>Informacion de Producto</h2>
+      <div class="info">
+        <div class="">
+          <p>
+            <strong>Titulo:</strong>
+            <%= @product.titulo%>
+          </p>
+
+          <p>
+            <strong>Categoria</strong>
+            <%= @product.categoria %>
+          </p>
+        </div>
+
+        <div class="">
+          <p>
+            <strong>Precio:</strong>
+            <%= @product.precio %>
+          </p>
+          <p>
+            <strong>Subcategoria:</strong>
+            <%= @product.subcategoria %>
+          </p>
+        </div>
+    </div>
+    <div class="">
+         <p>
+          <strong>Ubicacion:</strong>
+          <%= @product.provincia %>, <%= @product.distrito %>
+        </p>
+    </div>
+    <p>
+      <strong>Descripcion de Producto:</strong>
+      <%= @product.descripcion %>
+    </p>
+    <br>
+    <h2>Validar Producto</h2>
+    <%= link_to 'Validar', @product %>
+  </div>
+
+
+
+</div>
+<div class="footer">
+
+<p>©2023 UBoat</p>
+
+</div>
+</body>
+</html>

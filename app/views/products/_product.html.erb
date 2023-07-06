@@ -1,7 +1,9 @@
 <%= link_to product_path(product) do %>
 <div style="padding-bottom: 20px">
   <div class="card-trip">
+    <% if product.photos[0]%>
     <img src="<%= cl_image_path product.photos[0].key, height: 300, crop: :fill %>" />
+    <% end -%>
     <div class="card-trip-title" style="padding-left:16px; padding-right:16px; padding-top:16px;">
     <p><%= product.titulo %> </p>
   </div>

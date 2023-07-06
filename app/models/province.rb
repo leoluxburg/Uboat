@@ -1,4 +1,4 @@
 class Province < ApplicationRecord
-  has_many :distric
+  has_many :districts
 
 end

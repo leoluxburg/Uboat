@@ -1,0 +1,25 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://upload.wikimedia.org/wikipedia/commons/2/2d/Panam%C3%A1-Playa.JPG)";>
+  <div class="container">
+    <div class="row">
+      <div class="text-center">
+        <h1 style="margin-bottom: 0; font-family: 'IM Fell DW Pica SC', serif; color: white; font-size: 60px;">Productos en Los Santos</h1>
+        <p style="color: white;">Conoce todos los productos disponibles en la Provincia de Los Santos.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div>
+  <div class="container">
+    <br>
+    <div class="row">
+      <% @products.each do |product| %>
+      <div class="col-md-3">
+        <%= render product %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
