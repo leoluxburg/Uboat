@@ -39,6 +39,6 @@ class SearchesController < ApplicationController
     private
 
     def search_params
-        params.require(:search).permit(:category, :province, :subcategory, :district, :budget, :bay)
+        params.require(:search).permit(:category, :province, :subcategory, :district, :budget, :bay, :sector)
     end
 end

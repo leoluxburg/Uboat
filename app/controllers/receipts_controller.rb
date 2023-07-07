@@ -82,6 +82,9 @@ class ReceiptsController < ApplicationController
   # DELETE /receipts/1 or /receipts/1.json
   def destroy
     if current_user.admin
+    @receipt.receipt_items.each do |item|
+      item.destroy
+    end
     @receipt.destroy
 
     respond_to do |format|
@@ -164,6 +167,8 @@ class ReceiptsController < ApplicationController
           )
           respond_to do |format|
           if payment_confirmation.save
+            @receipt.status = 'Pago'
+            @receipt.save
             ReceiptMailer.with(receipt: @receipt).new_receipt_email.deliver_later
             format.html { redirect_to payment_method_path(receipt_id: @receipt.id), status: :see_other}
             format.json { render json: { success: true, message: 'Payment confirmation created successfully' } }

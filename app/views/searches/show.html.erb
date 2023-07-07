@@ -44,33 +44,37 @@
         <div class="collapse multi-collapse" id="multiCollapseExample1">
           <br>
           <div class="row">
-            <div class="col-md-6">
-              <%= f.label :budget, 'Presupuesto Compra', class: "form-label" %>
-              <%= f.number_field :budget, min: 0, class: "form-control"  %>
-            </div>
 
-            <div class="col-md-6">
-               <% bays_panama = ["Balboa Yacht Club - Ciudad de Panamá","Flamenco Marina - Isla Flamenco, Ciudad de Panamá","Shelter Bay Marina - Colón","Vista Mar Marina - San Carlos","Red Frog Beach Marina - Isla Bastimentos, Bocas del Toro","Marina Puerto Lindo - Puerto Lindo, Colón","Marina del Rey - Isla Linton, Bocas del Toro","Marina de la Playita - Ciudad de Panamá","Marina Corotú - David, Chiriquí","Marina Vista Mar - San Carlos","Marina Panamar - Ciudad de Panamá","Marina La Playita - Taboga, Ciudad de Panamá","Marina Cacique - Isla Iguana, Veraguas","Marina La Puntilla - Ciudad de Panamá","Marina de Chiriquí - Boca Chica, Chiriquí","Marina Puerto Azul - Isla Contadora, Archipiélago de Las Perlas","Marina de Pedasí - Pedasí, Los Santos","Marina Puerto Bahía - Punta Chame, Panamá Oeste","Marina Vista Mar - San Carlos","Marina El Capitán - Chame, Panamá Oeste"] %>
-                <%= f.label :bay, 'Bay',  class: "form-label" %>
-                <%= f.select :bay, bays_panama,  { prompt: "Select a bay" }, { class: "form-select", id: "bay" } %>
+            <div class="col-md-4">
+              <%= f.label :sector, 'Sector',  class: "form-label" %>
+              <%= f.select :sector, [],  { prompt: "Select a corregimiento" }, { class: "form-select", id: "corregimiento", onChange:"handleChange('sectors', 'sector', 'corregimiento')" } %>
             </div>
-          </div>
-        </div>
+            <div class="col-md-4">
+             <% bays_panama = ["Balboa Yacht Club - Ciudad de Panamá","Flamenco Marina - Isla Flamenco, Ciudad de Panamá","Shelter Bay Marina - Colón","Vista Mar Marina - San Carlos","Red Frog Beach Marina - Isla Bastimentos, Bocas del Toro","Marina Puerto Lindo - Puerto Lindo, Colón","Marina del Rey - Isla Linton, Bocas del Toro","Marina de la Playita - Ciudad de Panamá","Marina Corotú - David, Chiriquí","Marina Vista Mar - San Carlos","Marina Panamar - Ciudad de Panamá","Marina La Playita - Taboga, Ciudad de Panamá","Marina Cacique - Isla Iguana, Veraguas","Marina La Puntilla - Ciudad de Panamá","Marina de Chiriquí - Boca Chica, Chiriquí","Marina Puerto Azul - Isla Contadora, Archipiélago de Las Perlas","Marina de Pedasí - Pedasí, Los Santos","Marina Puerto Bahía - Punta Chame, Panamá Oeste","Marina Vista Mar - San Carlos","Marina El Capitán - Chame, Panamá Oeste"] %>
+             <%= f.label :bay, 'Bay',  class: "form-label" %>
+             <%= f.select :bay, bays_panama,  { prompt: "Select a bay" }, { class: "form-select", id: "bay" } %>
+           </div>
+            <div class="col-md-4">
+              <%= f.label :budget, 'Budget', class: "form-label" %>
+              <%= f.number_field :budget, min: 0, class: "form-control", placeholder: "50.00" %>
+            </div>
+         </div>
+       </div>
+     </div>
+     <br>
+     <div class="row">
+      <div class="col-md-4">
       </div>
-      <br>
-      <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4">
-          <%=f.submit 'Buscar', class: 'btn btn-boat space' %>
-        </div>
-        <div class="col-md-4">
-        </div>
+      <div class="col-md-4">
+        <%=f.submit 'Buscar', class: 'btn btn-boat space' %>
       </div>
-      <% end %>
-      <br>
+      <div class="col-md-4">
+      </div>
     </div>
+    <% end %>
+    <br>
   </div>
+</div>
 </div>
 <br>
 <br>

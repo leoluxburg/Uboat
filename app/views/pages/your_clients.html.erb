@@ -55,6 +55,7 @@
 
           <tbody>
               <% @receipts.each do |receipt| %>
+              <% if receipt.payment_confirmation %>
               <% if receipt.receipt_items.first and receipt.receipt_items.first.product %>
               <% if current_user == receipt.receipt_items.first.product.user %>
               <tr>
@@ -68,6 +69,7 @@
                 <th scope="row"><%= receipt.created_at %></th>
                 <th scope="row"><%= link_to 'Ver', receipt %></th>
               </tr>
+            <% end %>
             <% end %>
             <% end %>
             <% end %>
