@@ -7,7 +7,7 @@ class Search < ApplicationRecord
         products = Product.where(['distrito LIKE ?', "%#{district}%"]) if district.present?
         products = Product.where(['precio <= ?', budget]) if budget.present?
         products = Product.where(['marina  LIKE ?', "%#{bay}%"]) if bay.present?
-
+        products = Product.where(['corregimiento  LIKE ?', "%#{sector}%"]) if sector.present?
         return products
     end
 end
