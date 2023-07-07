@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
-  skip_before_action :authenticate_user!, only: [ :subcategories, :districts ]
+  skip_before_action :authenticate_user!, only: [ :subcategories, :districts, :states ]
   # GET /products or /products.json
   def index
     @products = Product.search(params[:search])
