@@ -116,7 +116,7 @@ class ReceiptsController < ApplicationController
       "CCLW" => '241484758C8CB86C552834D901E37436280E767CB3974685A4905F3062CB7AAEDE40F9C17FBA47BBE3B8A052E1ED96FD09E1118C8F490DFB42E0233ACBAFBD26',
       "CMTN" => @receipt.price,
       "CDSC" => 'UBoat',
-      "RETURN_URL" => "https://uboat.herokuapp.com/check_out?receipt_id=#{@receipt.id}",
+      "RETURN_URL" => "https://uboat.herokuapp.com/",
       "PF_CF" => '5B7B226964223A227472616D6974654964222C226E616D654F724C6162656C223A2249642064656C205472616D697465222C2276616C7565223A2254494432333435227D5D',
       "PARM_1" => '19816201',
       "EXPIRES_IN" => 3600
@@ -183,7 +183,7 @@ class ReceiptsController < ApplicationController
             @receipt.status = 'Pago'
             @receipt.save
             ReceiptMailer.with(receipt: @receipt).new_receipt_email.deliver_later
-            format.html { redirect_to payment_method_path(receipt_id: @receipt.id), status: :see_other}
+            format.html { redirect_to contact_us_path, status: :see_other}
             format.json { render json: { success: true, message: 'Payment confirmation created successfully' } }
           else
              format.json { render json: { success: false, message: 'Failed to create payment confirmation' }}
