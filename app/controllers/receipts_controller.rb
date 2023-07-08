@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 class ReceiptsController < ApplicationController
   before_action :set_receipt, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: [ :payment_confirmation]
   layout false, only: [:payment_method]
 
   # GET /receipts or /receipts.json
@@ -121,6 +122,9 @@ class ReceiptsController < ApplicationController
       "EXPIRES_IN" => 3600
       }
 
+      puts 'Sent data'
+      puts data
+
       postR = data.map { |key, value| "#{key}=#{value}" }.join('&')
 
       uri = URI('https://sandbox.paguelofacil.com/LinkDeamon.cfm')
@@ -139,7 +143,7 @@ class ReceiptsController < ApplicationController
       puts code
 
       if code != 200
-        redirect_to '/500.html'
+        redirect_to '/card_error'
       end
 
       puts data['data']['url']
@@ -166,7 +170,7 @@ class ReceiptsController < ApplicationController
         cclw = params[:CCLW]
       if @receipt.payment_confirmation
         puts 'receipt already paid'
-        redirect_to '/500.html'
+        redirect_to '/card_error'
       else
         # Create a new PaymentConfirmation record
         if total_pagado > 0 && estado != 'Denegada'
