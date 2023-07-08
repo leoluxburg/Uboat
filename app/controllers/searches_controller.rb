@@ -8,6 +8,17 @@ class SearchesController < ApplicationController
     end
 
     def new
+      receipts = Receipt.all
+      #receipts.each do |receipt|
+        #puts receipt
+        #puts receipt.status
+        #if receipt.status === 'En proceso'
+          #receipt.receipt_items.each do |item|
+            #item.destroy
+          #end
+          #receipt.destroy
+        #end
+      #end
       @categories = Category.all.pluck(:title)
       @provinces = Province.all.pluck(:title)
       @search = Search.new

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :locations, :about_us, :contact, :panama, :bocas_del_toro, :cocle, :colon, :chiriqui, :darien, :herrera, :los_santos, :veraguas, :panama_oeste, :embera, :guna_yala]
+  skip_before_action :authenticate_user!, only: [:home, :locations, :about_us, :contact, :panama, :bocas_del_toro, :cocle, :colon, :chiriqui, :darien, :herrera, :los_santos, :veraguas, :panama_oeste, :embera, :guna_yala, :thank_you]
 
 
   def home
@@ -16,6 +16,10 @@ class PagesController < ApplicationController
   end
 
   def about_us
+  end
+
+  def thank_you
+
   end
 
   def contact

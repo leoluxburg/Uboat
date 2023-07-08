@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get '/payment_method', to: 'receipts#payment_method'
   get '/check_out', to: 'receipts#payment_confirmation'
   get '/card_error', to: 'pages#card_error'
+  get '/thank_you', to: 'pages#thank_you'
 
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all

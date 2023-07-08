@@ -12,10 +12,7 @@ class ReceiptsController < ApplicationController
 
   # GET /receipts/1 or /receipts/1.json
   def show
-    url = 'https://uboat.herokuapp.com'
-      redirect = check_out_path(receipt_id: @receipt.id)
-      redirect_url = url + redirect
-      puts redirect_url.to_s
+
   end
 
   # GET /receipts/new
@@ -107,10 +104,6 @@ class ReceiptsController < ApplicationController
       puts @receipt.price
 
 
-      url = 'https://uboat.herokuapp.com'
-      redirect = check_out_path(receipt_id: @receipt.id)
-      url_path = url + redirect
-      puts url_path
 
       data = {
       "CCLW" => '241484758C8CB86C552834D901E37436280E767CB3974685A4905F3062CB7AAEDE40F9C17FBA47BBE3B8A052E1ED96FD09E1118C8F490DFB42E0233ACBAFBD26',
@@ -176,14 +169,14 @@ class ReceiptsController < ApplicationController
         if total_pagado > 0 && estado != 'Denegada'
           payment_confirmation = PaymentConfirmation.new(
             receipt: @receipt, # replace with the actual receipt object
-            code: 'code-00000' # replace with the appropriate key to access the code in receipt_data
+            code: oper # replace with the appropriate key to access the code in receipt_data
           )
           respond_to do |format|
           if payment_confirmation.save
             @receipt.status = 'Pago'
             @receipt.save
             ReceiptMailer.with(receipt: @receipt).new_receipt_email.deliver_later
-            format.html { redirect_to contact_us_path, status: :see_other}
+            format.html { redirect_to thank_you_path, status: :see_other}
             format.json { render json: { success: true, message: 'Payment confirmation created successfully' } }
           else
              format.json { render json: { success: false, message: 'Failed to create payment confirmation' }}
