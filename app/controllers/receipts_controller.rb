@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 class ReceiptsController < ApplicationController
   before_action :set_receipt, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!, only: [ :payment_confirmation]
+  #skip_before_action :authenticate_user!, only: [ :payment_confirmation]
   layout false, only: [:payment_method]
 
   # GET /receipts or /receipts.json
@@ -116,7 +116,7 @@ class ReceiptsController < ApplicationController
       "CCLW" => '241484758C8CB86C552834D901E37436280E767CB3974685A4905F3062CB7AAEDE40F9C17FBA47BBE3B8A052E1ED96FD09E1118C8F490DFB42E0233ACBAFBD26',
       "CMTN" => @receipt.price,
       "CDSC" => 'UBoat',
-      "RETURN_URL" => "https://uboat.herokuapp.com/",
+      "RETURN_URL" => "https://uboat.herokuapp.com/check_out?receipt_id=#{@receipt.id}",
       "PF_CF" => '5B7B226964223A227472616D6974654964222C226E616D654F724C6162656C223A2249642064656C205472616D697465222C2276616C7565223A2254494432333435227D5D',
       "PARM_1" => '19816201',
       "EXPIRES_IN" => 3600
