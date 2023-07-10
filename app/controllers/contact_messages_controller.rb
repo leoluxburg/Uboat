@@ -31,7 +31,7 @@ class ContactMessagesController < ApplicationController
 
     respond_to do |format|
       if @contact_message.save
-        format.html { redirect_to contact_path, notice: "Contact message was successfully created." }
+        format.html { redirect_to contact_path, notice: "Contact message was successfully sent." }
         format.json { render :show, status: :created, location: @contact_message }
       else
         format.html { render :contact, status: :unprocessable_entity }
